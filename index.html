@@ -1,25 +1,23 @@
-<html lang="zh-Hant"><head>
+<html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>敦华集团 | DUNHUA GROUP</title>
+    <title>敦华集团 - 文化创意产业先行者</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
-        // 配置Tailwind自定义颜色和字体
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F3460', // 深蓝色 - 专业、信任
-                        secondary: '#E6B325', // 金色 - 创意、活力
-                        accent: '#C8102E', // 红色 - 突出重要元素
-                        dark: '#1A1A2E',
-                        light: '#F5F5F5'
+                        primary: '#0A4DA2', // 科技蓝主色调
+                        secondary: '#35B2E7', // 亮蓝色辅助色
+                        neutral: '#F0F7FF', // 浅蓝灰色中性色
+                        dark: '#052B5C' // 深蓝色
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        serif: ['Noto Serif', 'serif']
-                    }
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif']
+                    },
                 }
             }
         }
@@ -30,175 +28,185 @@
                 content-visibility: auto;
             }
             .text-shadow {
-                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
             }
-            .transition-transform-opacity {
-                transition-property: transform, opacity;
-            }
-            .bg-blur {
+            .backdrop-blur {
                 backdrop-filter: blur(8px);
             }
             .logo-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 2rem;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
             }
             .subsidiary-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 1.5rem;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-            /* 新增的桌面版网格样式 */
-            .desktop-logo-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2rem;
-            }
-            .desktop-subsidiary-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 1.5rem;
+            .responsive-text {
+                font-size: clamp(1rem, 3vw, 1.25rem);
             }
         }
     </style>
     <style>
         /* 基础动画定义 */
-        .fade-in {
-            animation: fadeIn 0.8s ease-in forwards;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .slide-up {
-            animation: slideUp 0.6s ease-out forwards;
-        }
-        
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .scale-in {
-            animation: scaleIn 0.5s ease-out forwards;
-        }
-        
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        /* 滚动监听动画 */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease-out;
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
         }
-        
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
         
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
+        /* 导航栏样式 */
+        #navbar {
+            transition: all 0.3s ease;
         }
-
-        /* Logo 动画效果 */
-        .logo-container {
-            transition: transform 0.3s ease;
+        
+        /* 移动端菜单动画 */
+        #mobile-menu {
+            transform: translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
         }
-        .logo-container:hover {
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* 产业卡片交互 */
+        .industry-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .industry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+        }
+        .industry-card:hover .industry-icon {
+            background-color: #35B2E7;
+            color: white;
+        }
+        
+        /* 品牌商标悬停效果 */
+        .brand-item {
+            transition: all 0.3s ease;
+        }
+        .brand-item:hover {
             transform: scale(1.05);
         }
         
-        /* 品牌Logo样式 */
-        .brand-logo {
-            transition: all 0.3s ease;
-            filter: grayscale(100%);
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
-        .brand-logo:hover {
-            filter: grayscale(0);
-            transform: translateY(-5px);
+        
+        /* 焦点样式 */
+        a:focus, button:focus {
+            outline: 3px solid #35B2E7;
+            outline-offset: 2px;
+        }
+        
+        /* 地址卡片样式 */
+        .address-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .address-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        /* 地图容器样式 - 优化高度和响应式表现 */
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            height: 100%;
+            min-height: 400px; /* 调整为更合适的高度 */
+        }
+        
+        /* 联系部分响应式调整 */
+        @media (max-width: 768px) {
+            .map-container {
+                min-height: 300px; /* 移动端地图高度 */
+            }
         }
     </style>
 </head>
-<body class="bg-light text-gray-800 font-sans overflow-x-hidden">
+<body class="font-sans text-gray-800 bg-white">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
-        <div class="container mx-auto px-4 py-3 md:py-4 flex items-center justify-between">
-            <!-- Logo - 使用图片替代DH文字 -->
-            <a href="#" class="flex items-center space-x-3 logo-container">
-                <!-- 使用图片LOGO替代文字DH，底色设置为透明 -->
-                <div class="w-12 h-12 rounded-lg flex items-center justify-center shadow-md bg-transparent">
-                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/961f885f955b4b239d6634252835684a~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753960680&amp;x-signature=DyGykpqn7nyAbMAdX%2F%2BhwL1gqHA%3D" alt="敦华集团LOGO" class="w-8 h-8 object-contain">
-                </div>
-                <div>
-                    <h1 class="text-primary font-bold text-xl md:text-2xl" data-lang="logo">敦華集團</h1>
-                    <p class="text-primary text-xs md:text-sm font-medium">DUNHUA GROUP</p>
-                </div>
+    <header id="navbar" class="fixed w-full z-50 bg-transparent">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white flex items-center">
+                <!-- 替换DH为图片LOGO -->
+                <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/8f1fc8f35eb0448ea49b6270f58fd08a~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025280&amp;x-signature=xcufCAYJjjbj7yp%2BlyUToLP1ZTY%3D" alt="敦华集团LOGO" class="mr-2 bg-transparent" width="40" height="40">
+                <span data-lang="nav-logo">敦华集团</span>
             </a>
             
-            <!-- 桌面导航菜单 -->
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-about">关于我们</a>
-                <a href="#subsidiaries" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-subsidiaries">旗下公司</a>
-                <a href="#industries" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-industries">核心产业</a>
-                <a href="#achievements" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-achievements">集团成就</a>
-                <a href="#strategy" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-strategy">战略布局</a>
-                <a href="#news" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-news">新闻动态</a>
-                <a href="#contact" class="text-gray-700 hover:text-primary transition-colors" data-lang="nav-contact">联系我们</a>
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-about">关于我们</a>
+                <a href="#industries" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-industries">核心产业</a>
+                <a href="#subsidiaries" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-subsidiaries">旗下公司</a>
+                <a href="#brands" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-brands">品牌商标</a>
+                <a href="#news" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-news">新闻动态</a>
+                <a href="#contact" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-contact">联系我们</a>
             </nav>
             
             <!-- 语言切换 -->
-            <div class="flex items-center space-x-3">
-                <button class="lang-btn px-2 py-1 text-sm hover:text-primary transition-colors" data-lang="zh-Hant">繁</button>
-                <button class="lang-btn px-2 py-1 text-sm hover:text-primary transition-colors" data-lang="zh-CN">简</button>
-                <button class="lang-btn px-2 py-1 text-sm hover:text-primary transition-colors" data-lang="en">En</button>
-                
-                <!-- 移动端菜单按钮 -->
-                <button id="menu-toggle" class="md:hidden text-gray-700 focus:outline-none">
-                    <i class="fa fa-bars text-xl"></i>
-                </button>
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="lang-btn text-white hover:text-secondary transition-colors" data-lang="zh-CN">简</button>
+                <button class="lang-btn text-white hover:text-secondary transition-colors" data-lang="zh-Hant">繁</button>
+                <button class="lang-btn text-white hover:text-secondary transition-colors" data-lang="en">En</button>
             </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
         </div>
         
-        <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full left-0 top-full transform -translate-y-full opacity-0 transition-all duration-300 pointer-events-none">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
-                <a href="#about" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-about">关于我们</a>
-                <a href="#subsidiaries" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-subsidiaries">旗下公司</a>
-                <a href="#industries" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-industries">核心产业</a>
-                <a href="#achievements" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-achievements">集团成就</a>
-                <a href="#strategy" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-strategy">战略布局</a>
-                <a href="#news" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-news">新闻动态</a>
-                <a href="#contact" class="text-gray-700 hover:text-primary py-2 transition-colors" data-lang="nav-contact">联系我们</a>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="#about" class="text-primary hover:text-secondary transition-colors" data-lang="nav-about">关于我们</a>
+                <a href="#industries" class="text-primary hover:text-secondary transition-colors" data-lang="nav-industries">核心产业</a>
+                <a href="#subsidiaries" class="text-primary hover:text-secondary transition-colors" data-lang="nav-subsidiaries">旗下公司</a>
+                <a href="#brands" class="text-primary hover:text-secondary transition-colors" data-lang="nav-brands">品牌商标</a>
+                <a href="#news" class="text-primary hover:text-secondary transition-colors" data-lang="nav-news">新闻动态</a>
+                <a href="#contact" class="text-primary hover:text-secondary transition-colors" data-lang="nav-contact">联系我们</a>
+                
+                <div class="flex items-center space-x-4 pt-2 border-t border-gray-200">
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors" data-lang="zh-CN">简</button>
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors" data-lang="zh-Hant">繁</button>
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors" data-lang="en">En</button>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- 首页横幅 -->
+    <!-- 英雄区域 -->
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/640d4c4b61504a2d9618c5c80ba7b35a~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1753945924&amp;x-signature=W7aEu%2F52SjQjpkyPMa6ltZcJdCM%3D" alt="文化创意产业背景图" class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-primary/60"></div>
+            <img src="https://picsum.photos/id/1076/1920/1080" alt="敦华集团文化创意产业" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080">
+            <div class="absolute inset-0 bg-primary/70"></div>
         </div>
+        
         <div class="container mx-auto px-4 z-10 text-center">
-            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-6 text-shadow fade-in" data-lang="hero-title">敦華集團</h1>
-            <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white/90 mb-10 max-w-3xl mx-auto text-shadow fade-in" style="animation-delay: 0.2s" data-lang="hero-subtitle">DUNHUA GROUP</p>
-            <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-10 max-w-3xl mx-auto text-shadow fade-in" style="animation-delay: 0.4s" data-lang="hero-desc">专注于文化创意产业的投融資機構</p>
-            <a href="#about" class="inline-block bg-secondary hover:bg-secondary/90 text-dark font-bold py-3 px-8 rounded-full transition-all transform hover:scale-105 fade-in" style="animation-delay: 0.6s" data-lang="hero-btn">了解更多</a>
+            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold text-white mb-2 text-shadow reveal" data-lang="hero-title">敦华集团</h1>
+            <p class="text-[clamp(1.2rem,3vw,1.5rem)] text-white font-serif mb-6 text-shadow reveal" style="transition-delay: 0.2s">DUNHUA GROUP</p>
+            <p class="text-[clamp(1.1rem,3vw,1.5rem)] text-white/90 max-w-3xl mx-auto mb-10 reveal" style="transition-delay: 0.4s" data-lang="hero-desc">文化创意产业先行者 · 国际文化交流桥梁</p>
+            <a href="#about" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-3 rounded-lg transition-all transform hover:scale-105 reveal" style="transition-delay: 0.6s" data-lang="hero-btn">了解更多</a>
         </div>
+        
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
             <a href="#about" aria-label="向下滚动"><i class="fa fa-angle-down text-3xl"></i></a>
         </div>
     </section>
 
     <!-- 关于我们 -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 bg-neutral">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="about-title">关于我们</h2>
@@ -207,154 +215,31 @@
             
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="reveal">
-                    <!-- 缩小图片尺寸 -->
-                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/820013f1fdaf49b5a14f99c5e50fb601~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753955331&amp;x-signature=rZNXLXZG6ZZlBRiIhZm8dU1FUac%3D" alt="敦华集团办公环境" class="w-full max-w-md h-auto rounded-lg shadow-xl object-cover mx-auto">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a6eed54d0e334ce59622fe5ae83050bf~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025309&amp;x-signature=HlZNwUjR3A6dBOPcEbhyPT6DioQ%3D" alt="敦华集团办公环境" class="w-full h-auto rounded-lg shadow-xl object-cover" loading="lazy" width="600" height="400">
                 </div>
+                
                 <div class="reveal" style="transition-delay: 0.2s">
-                    <p class="text-gray-700 mb-6 leading-relaxed" data-lang="about-content">敦華集團是一家以文化創意產業為發展方向的投融資機構,總部位於香港屯門區。公司在影視出品、演藝製作、康旅研學、文創商貿等領域全力拓展,成功投資主辦和承辦了數百場大型演出,出品多部院線電影,並投資運營文旅康養小鎮和創立"東江泉"飲用水品牌。透過整合海內外資本，以及中外文化交流項目合作，敦華集團致力於推動文化產業的發展。</p>
+                    <h3 class="text-2xl font-semibold text-primary mb-6" data-lang="about-subtitle">集团简介</h3>
+                    <p class="responsive-text text-gray-700 mb-6 leading-relaxed" data-lang="about-text1">敦华集团有限公司位于香港屯门区，是以国际文化交流为契机，专注服务于文化创意产业的投融资机构。旗下控股公司遍布香港、深圳、北京、赣州等地。</p>
+                    <p class="responsive-text text-gray-700 mb-6 leading-relaxed" data-lang="about-text2">公司以影视出品、演艺制作、康旅研学、文创商贸等四大核心文化产业为发展方向，在各自领域全力拓展，成功投资主办、承办了数百场大型演出项目，出品拍摄多部院线电影，投资并运营文旅康养小镇，创立"东江泉"饮用水品牌，是文创行业发展先行者。</p>
                     
-                    <div class="grid grid-cols-2 gap-6 mt-10">
-                        <div class="flex items-start">
-                            <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                <i class="fa fa-globe text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-primary mb-2" data-lang="about-global">全球化布局</h3>
-                                <p class="text-gray-600 text-sm" data-lang="about-global-desc">整合海內外資本，拓展國際市場</p>
-                            </div>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2" data-lang="about-stat1">100+</div>
+                            <p class="text-gray-600" data-lang="about-stat1-text">大型演出项目</p>
                         </div>
-                        <div class="flex items-start">
-                            <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                <i class="fa fa-handshake-o text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-primary mb-2" data-lang="about-cooperation">战略合作</h3>
-                                <p class="text-gray-600 text-sm" data-lang="about-cooperation-desc">與媒體及行業領先企業建立良好合作</p>
-                            </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2" data-lang="about-stat2">6+</div>
+                            <p class="text-gray-600" data-lang="about-stat2-text">院线电影出品</p>
                         </div>
-                        <div class="flex items-start">
-                            <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                <i class="fa fa-lightbulb-o text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-primary mb-2" data-lang="about-creative">文化创意</h3>
-                                <p class="text-gray-600 text-sm" data-lang="about-creative-desc">推動文化創意項目，注重文化內涵</p>
-                            </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2" data-lang="about-stat3">8+</div>
+                            <p class="text-gray-600" data-lang="about-stat3-text">控股子公司</p>
                         </div>
-                        <div class="flex items-start">
-                            <div class="bg-primary/10 p-3 rounded-full mr-4">
-                                <i class="fa fa-heart text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-primary mb-2" data-lang="about-social">社会责任</h3>
-                                <p class="text-gray-600 text-sm" data-lang="about-social-desc">支持社區發展，回饋社會大眾</p>
-                            </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-primary mb-2" data-lang="about-stat4">9+</div>
+                            <p class="text-gray-600" data-lang="about-stat4-text">品牌商标</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 旗下公司 -->
-    <section id="subsidiaries" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16 reveal">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="subsidiaries-title">集團控股</h2>
-                <!-- 删除了"集團控股的部分投資品牌與子公司"这段文字 -->
-                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
-            </div>
-            
-            <!-- 投资品牌LOGO展示区 - 改为8个并分成两行，每行4个 -->
-            <div class="mb-16 reveal">
-                <h3 class="text-xl font-bold text-primary mb-8 text-center" data-lang="invested-brands">旗下部分投資品牌</h3>
-                <!-- 桌面版使用两行四列布局，移动版使用自动适应 -->
-                <div class="md:desktop-logo-grid logo-grid">
-                    <!-- 品牌LOGO 1 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal">
-                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c8980de55d3742bc8a3873e4b4251797~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753975069&amp;x-signature=g%2F6COR48jSjzilOgxwAGjg9dmdI%3D" alt="投资品牌1 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 品牌LOGO 2 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.1s">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/0079c23483b5496982efb5f590cf35df~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753970960&amp;x-signature=ZQ9ctTmK240Gm4uneXXcJLbuYeg%3D" alt="投资品牌2 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 品牌LOGO 3 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.2s">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/adcfd937eb344a70a8d46ec263a83b34~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753975153&amp;x-signature=gflr2Nk%2FS1U4BlfqoKnOi%2FD%2FzIc%3D" alt="投资品牌3 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 品牌LOGO 4 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.3s">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3e0815a71c5c4c788137759d079233fe~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753971025&amp;x-signature=KpkHsU6GxDTBXYVrX2Zjz3qBQ0g%3D" alt="投资品牌4 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 品牌LOGO 5 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.4s">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/496f9b58529b40f3932d11fef4e0490d~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753971053&amp;x-signature=V7eeVrIOGZsjVgfMOhhY%2BTASzlA%3D" alt="投资品牌5 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 品牌LOGO 6 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.5s">
-                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3128d0e3ae134ed2994a228bcee58159~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753959783&amp;x-signature=3WoMNTwmG5IY2KhKuOixk5T0n4g%3D" alt="投资品牌6 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 新增品牌LOGO 7 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.6s">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/e176ba9373d34addbb33bfe89a70532b~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753975130&amp;x-signature=YAy6UsaQBaCnQf%2BMAv0Nfh9AMe0%3D" alt="投资品牌7 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                    
-                    <!-- 新增品牌LOGO 8 -->
-                    <div class="flex justify-center items-center p-6 bg-white rounded-lg shadow-sm brand-logo reveal" style="transition-delay: 0.7s">
-                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/e5fecc2df1654db39737534241235ddc~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753975092&amp;x-signature=aZYo8nfd1QTCWKKLjDSZWoKK7Cw%3D" alt="投资品牌8 logo" class="max-h-20 max-w-full object-contain">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 旗下子公司展示区 - 8个公司分成两行，每行4个 -->
-            <div class="reveal">
-                <h3 class="text-xl font-bold text-primary mb-8 text-center" data-lang="subsidiary-companies">旗下部分投資控股子公司</h3>
-                <!-- 桌面版使用两行四列布局，移动版使用自动适应 -->
-                <div class="md:desktop-subsidiary-grid subsidiary-grid">
-                    <!-- 子公司1 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal">
-                        <h3 class="font-bold text-primary" data-lang="sub-1">敦華文化傳播有限公司</h3>
-                    </div>
-                    
-                    <!-- 子公司2 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.1s">
-                        <h3 class="font-bold text-primary" data-lang="sub-2">深圳市青花瓷樂團</h3>
-                    </div>
-                    
-                    <!-- 子公司3 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.2s">
-                        <h3 class="font-bold text-primary" data-lang="sub-3">東江泉(香港)食品飲料有限公司</h3>
-                    </div>
-                    
-                    <!-- 子公司4 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.3s">
-                        <h3 class="font-bold text-primary" data-lang="sub-4">歲金珠寶行</h3>
-                    </div>
-                    
-                    <!-- 子公司5 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.4s">
-                        <h3 class="font-bold text-primary" data-lang="sub-5">瑞金市朱坊康養小鎮</h3>
-                    </div>
-                    
-                    <!-- 子公司6 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.5s">
-                        <h3 class="font-bold text-primary" data-lang="sub-6">瑞金市朱坊文化旅遊有限公司</h3>
-                    </div>
-                    
-                    <!-- 子公司7 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.6s">
-                        <h3 class="font-bold text-primary" data-lang="sub-7">景洪敦華貿易商行</h3>
-                    </div>
-                    
-                    <!-- 子公司8 -->
-                    <div class="bg-white p-5 rounded-lg shadow-sm hover:shadow-md transition-shadow text-center reveal" style="transition-delay: 0.7s">
-                        <h3 class="font-bold text-primary" data-lang="sub-8">寧波星媒時代廣告</h3>
                     </div>
                 </div>
             </div>
@@ -366,84 +251,85 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="industries-title">核心产业</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-lang="industries-subtitle">集团主要四大核心产业</p>
-                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 responsive-text" data-lang="industries-desc">敦华集团以四大核心文化产业为发展方向，在各自领域全力拓展，打造文化创意产业生态圈。</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- 主要核心产业 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <!-- 产业1 -->
-                <div class="relative group reveal">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-10 rounded-lg"></div>
-                    <img src="https://picsum.photos/id/1068/600/800" alt="影视出品" class="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute bottom-0 left-0 p-6 z-20">
-                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 transform group-hover:rotate-12 transition-transform">
-                            <i class="fa fa-film text-dark text-xl"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-xl mb-3" data-lang="industry-1">影视出品</h3>
-                        <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-lang="industry-1-desc">製作電影、電視劇、紀錄片等影視作品包括選題、劇本創作、籌資、預算管理、拍攝、後期製作、宣傳推廣等環節。</p>
+                <div class="industry-card bg-white rounded-lg shadow-lg p-8 reveal">
+                    <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                        <i class="fa fa-film"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="industry1-title">影视出品</h3>
+                    <p class="text-gray-600" data-lang="industry1-text">制作电影、电视剧、纪录片等影视作品，涵盖选题、剧本创作、筹资、预算管理、拍摄、后期制作及宣传推广等全流程。</p>
                 </div>
                 
                 <!-- 产业2 -->
-                <div class="relative group reveal" style="transition-delay: 0.2s">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-10 rounded-lg"></div>
-                    <img src="https://picsum.photos/id/1071/600/800" alt="演艺制作" class="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute bottom-0 left-0 p-6 z-20">
-                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 transform group-hover:rotate-12 transition-transform">
-                            <i class="fa fa-music text-dark text-xl"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-xl mb-3" data-lang="industry-2">演藝制作</h3>
-                        <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-lang="industry-2-desc">音樂劇、舞蹈表演、戲劇演出等各種演藝包括編排、排練、舞美設計、演員選擇、燈光音效設置、劇碼策劃等環節。</p>
+                <div class="industry-card bg-white rounded-lg shadow-lg p-8 reveal" style="transition-delay: 0.1s">
+                    <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                        <i class="fa fa-music"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="industry2-title">演艺制作</h3>
+                    <p class="text-gray-600" data-lang="industry2-text">包括音乐剧、舞蹈表演、戏剧演出等多种演艺形式，涉及编排、排练、舞美设计、演员选择、灯光音效设置及剧码策划等环节。</p>
                 </div>
                 
                 <!-- 产业3 -->
-                <div class="relative group reveal" style="transition-delay: 0.4s">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-10 rounded-lg"></div>
-                    <img src="https://picsum.photos/id/1036/600/800" alt="康旅研学" class="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute bottom-0 left-0 p-6 z-20">
-                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 transform group-hover:rotate-12 transition-transform">
-                            <i class="fa fa-tree text-dark text-xl"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-xl mb-3" data-lang="industry-3">康旅研學</h3>
-                        <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-lang="industry-3-desc">康旅和學習相結合體驗式教育方式，學生或遊客參與各種戶外活動、文化學習等，提供身心健康、知識增長和團隊合作的機會。</p>
+                <div class="industry-card bg-white rounded-lg shadow-lg p-8 reveal" style="transition-delay: 0.2s">
+                    <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                        <i class="fa fa-plane"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="industry3-title">康旅研学</h3>
+                    <p class="text-gray-600" data-lang="industry3-text">将康养旅游和学习相结合的体验式教育方式，为学生或游客提供参与户外活动、文化学习、身心健康提升的机会。</p>
                 </div>
                 
                 <!-- 产业4 -->
-                <div class="relative group reveal" style="transition-delay: 0.6s">
-                    <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent z-10 rounded-lg"></div>
-                    <img src="https://picsum.photos/id/1059/600/800" alt="文创商贸" class="w-full h-80 object-cover rounded-lg group-hover:scale-105 transition-transform duration-500">
-                    <div class="absolute bottom-0 left-0 p-6 z-20">
-                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center mb-4 transform group-hover:rotate-12 transition-transform">
-                            <i class="fa fa-shopping-basket text-dark text-xl"></i>
-                        </div>
-                        <h3 class="text-white font-bold text-xl mb-3" data-lang="industry-4">文創商貿</h3>
-                        <p class="text-white/80 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-lang="industry-4-desc">文創產業涵蓋文化藝術、設計、傳媒、數字內容等領域，包括創意產品設計、文化藝術展覽、創意活動策劃、知識產權經營等。</p>
+                <div class="industry-card bg-white rounded-lg shadow-lg p-8 reveal" style="transition-delay: 0.3s">
+                    <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                        <i class="fa fa-shopping-bag"></i>
                     </div>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="industry4-title">文创商贸</h3>
+                    <p class="text-gray-600" data-lang="industry4-text">涵盖文化艺术、设计、传媒、数字内容等领域，包括创意产品设计、文化艺术展览、创意活动策划及知识产权经营等。</p>
                 </div>
             </div>
             
-            <!-- 特色业务 -->
-            <div class="mt-20 reveal">
-                <h3 class="text-2xl font-bold text-primary mb-8 text-center" data-lang="special-business">特色业务</h3>
-                <div class="bg-gray-50 rounded-xl p-8 shadow-sm">
-                    <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h4 class="text-xl font-bold text-primary mb-4" data-lang="business-1">演藝經紀</h4>
-                            <p class="text-gray-700 leading-relaxed" data-lang="business-1-desc">敦華經紀人業務系敦華的創始業務，多年來與眾多一線明星藝人建立深厚友誼及戰略夥伴關係！</p>
+            <!-- 独立隔离的产业 -->
+            <div class="space-y-12">
+                <!-- 演艺经纪 -->
+                <div class="bg-neutral rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.4s">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 flex flex-col justify-center">
+                            <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                                <i class="fa fa-users"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-primary mb-4" data-lang="industry5-title">演艺经纪</h3>
+                            <p class="text-gray-600 mb-6" data-lang="industry5-text">敦华的创始业务，多年来与众多一线明星艺人建立深厚友谊及战略伙伴关系，提供专业的艺人经纪服务。我们的服务包括艺人包装、推广、商业演出安排、合约管理等全方位支持。</p>
+                            <a href="#" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
                         </div>
-                        <div class="h-48 md:h-64 overflow-hidden rounded-lg">
-                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/0c50109ad4f94c4f95fa983807b8e652~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753959641&amp;x-signature=3IMkKzfgrLnxKVWPPvrsFThkxNg%3D" alt="演艺经纪活动现场" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <div class="h-64 md:h-auto">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c59ea93a94624eb29822a6d70f4fbed1~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754036447&amp;x-signature=wOHAI1nzlmT%2BlOpcvY8CHeis8Ps%3D" alt="演艺经纪业务" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                         </div>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-8 items-center mt-8">
-                        <div class="h-48 md:h-64 overflow-hidden rounded-lg order-2 md:order-1">
-                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/dc7a8fc07a774105801de9fef795bb4e~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753959705&amp;x-signature=n4DYRvhoCvb12%2FfloJUEUZE%2F4AQ%3D" alt="康养小镇环境" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                
+                <!-- 实业投资 -->
+                <div class="bg-neutral rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.5s">
+                    <div class="grid md:grid-cols-2 md:flex-row-reverse">
+                        <div class="p-8 flex flex-col justify-center">
+                            <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
+                                <i class="fa fa-industry"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-primary mb-4" data-lang="industry6-title">实业投资</h3>
+                            <p class="text-gray-600 mb-6" data-lang="industry6-text">投资运营文旅朱坊康养小镇、饮用水品牌等实业项目，作为行业发展先行者，打造多元化文化产业布局。我们专注于有长期发展潜力的实体项目，追求可持续的投资回报。</p>
+                            <a href="#" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                                了解更多 <i class="fa fa-arrow-right ml-2"></i>
+                            </a>
                         </div>
-                        <div class="order-1 md:order-2">
-                            <h4 class="text-xl font-bold text-primary mb-4" data-lang="business-2">康養小鎮</h4>
-                            <p class="text-gray-700 leading-relaxed" data-lang="business-2-desc">小鎮是集旅遊、休閑、娱樂、民宿、餐飲、會議、團建、拓展培訓、健康論壇、養生養老爲一體的綜合性旅遊度假區。</p>
+                        <div class="h-64 md:h-auto">
+                            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3d04ca8bbd9f436fb03664f4f70943a4~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754036222&amp;x-signature=0kte7gUH2K4N0XmPajlifD3B9%2Fs%3D" alt="实业投资业务" class="w-full h-full object-cover" loading="lazy" width="800" height="600">
                         </div>
                     </div>
                 </div>
@@ -451,43 +337,170 @@
         </div>
     </section>
 
-    <!-- 集团成就 -->
-    <section id="achievements" class="py-20 bg-primary text-white">
+    <!-- 旗下公司 -->
+    <section id="subsidiaries" class="py-20 bg-neutral">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4" data-lang="achievements-title">集团成就</h2>
-                <p class="text-white/80 max-w-2xl mx-auto" data-lang="achievements-subtitle">多年来，敦华集团在文化创意产业取得的重要成就</p>
-                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="subsidiaries-title">旗下公司</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 responsive-text" data-lang="subsidiaries-desc">敦华集团旗下拥有多家专业子公司，业务覆盖香港、深圳、北京、赣州等地，形成协同发展的产业格局。</p>
             </div>
             
-            <!-- 删除了康养小镇板块，保留3个成就板块 -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-                <div class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors reveal">
-                    <div class="text-4xl md:text-5xl font-bold text-secondary mb-3 counter" data-target="100">100+</div>
-                    <p class="text-white/90" data-lang="achievement-1">大型演出項目</p>
+            <!-- 每行3个公司 -->
+            <div class="grid md:grid-cols-3 gap-6 reveal">
+                <!-- 公司1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-globe"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub1">敦华文化传播有限公司</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub1-desc">文化项目策划与执行</p>
                 </div>
                 
-                <div class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors reveal" style="transition-delay: 0.2s">
-                    <div class="text-4xl md:text-5xl font-bold text-secondary mb-3 counter" data-target="6">6</div>
-                    <p class="text-white/90" data-lang="achievement-2">院線電影</p>
+                <!-- 公司2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-music"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub2">深圳市青花瓷樂團</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub2-desc">专业音乐演出团体</p>
                 </div>
                 
-                <div class="p-6 bg-white/10 rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors reveal" style="transition-delay: 0.4s">
-                    <div class="text-4xl md:text-5xl font-bold text-secondary mb-3 counter" data-target="10">3</div>
-                    <p class="text-white/90" data-lang="achievement-3">投資運營實業</p>
+                <!-- 公司3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-user"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub3">敦华演艺经纪有限公司</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub3-desc">艺人经纪与管理服务</p>
+                </div>
+                
+                <!-- 公司4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-diamond"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub4">歲金珠寶行</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub4-desc">珠宝设计与销售</p>
+                </div>
+                
+                <!-- 公司5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-home"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub5">瑞金市朱坊康養小鎮</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub5-desc">康养旅游综合体</p>
+                </div>
+                
+                <!-- 公司6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-map-marker"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub6">瑞金市朱坊文化旅遊有限公司</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub6-desc">文化旅游项目开发</p>
+                </div>
+                
+                <!-- 公司7 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-truck"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub7">景洪敦华貿易商行</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub7-desc">文化产品贸易</p>
+                </div>
+                
+                <!-- 公司8 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-bullhorn"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub8">寧波星媒時代广告有限公司</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub8-desc">广告策划与媒体服务</p>
+                </div>
+                
+                <!-- 公司9 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow">
+                    <div class="text-primary text-3xl mb-4"><i class="fa fa-tint"></i></div>
+                    <h3 class="font-semibold text-lg mb-2" data-lang="sub9">東江泉(香港)食品飲料有限公司</h3>
+                    <p class="text-sm text-gray-600" data-lang="sub9-desc">天然泉水生产与销售</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- 品牌商标 -->
+    <section id="brands" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="brands-title">品牌商标</h2>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 responsive-text" data-lang="brands-desc">敦华集团旗下拥有多个知名品牌，覆盖文化、旅游、商贸等多个领域。</p>
+            </div>
             
-            <!-- 东江泉特色展示 -->
-            <div class="mt-20 bg-white rounded-xl overflow-hidden shadow-xl reveal">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-8 md:p-12 flex flex-col justify-center">
-                        <h3 class="text-2xl font-bold text-primary mb-4" data-lang="dongjiangquan">東江泉</h3>
-                        <p class="text-gray-700 mb-6" data-lang="dongjiangquan-slogan">2025年為紀念東江水供港60周年,敦華集團推出了"東江泉·飲用天然泉水"品牌。</p>
-                        <p class="text-gray-600 leading-relaxed" data-lang="dongjiangquan-desc">水源來自江西赣南地下280米，是集團旗下優質食品飲料業務的代表，秉承品質至上的理念，為大眾提供健康優質的天然泉水。</p>
+            <!-- 8个logo分成两行，每行4个 -->
+            <div class="grid logo-grid items-center justify-items-center gap-8 reveal">
+                <!-- 品牌1 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/0e096e556f734485a97bd10f3da486c6~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025479&amp;x-signature=513cp%2F%2F7gaJ29ReFGIWLi9AcTGE%3D" alt="敦华文化" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand1"></span>
+                </div>
+                
+                <!-- 品牌2 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c46ae872e119401189334f3a5a0d22e8~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025513&amp;x-signature=osAXfc3YqeHQ19RNOpQQuv4E9bc%3D" alt="青花瓷樂團" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand2"></span>
+                </div>
+                
+                <!-- 品牌3 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a87bd3f8dd6d40f9acd149b22169b5f1~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025539&amp;x-signature=v6CZANxEvbYRob2wWrOnBdTDr%2FA%3D" alt="朱坊文旅" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand3"></span>
+                </div>
+                
+                <!-- 品牌4 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/b1764dab6796493cb4f19e9ac3fc88f9~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754036121&amp;x-signature=xlHi%2FWlOroz1%2Bb7LCmcM6OyxMOY%3D" alt="星媒" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand4"></span>
+                </div>
+                
+                <!-- 品牌5 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/09b30b891f22491998fe922fb4f6f979~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754037208&amp;x-signature=VHuE%2FvKJdNjtUWotko3N2PznfH8%3D" alt="歲金行" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand5"></span>
+                </div>
+                
+                <!-- 品牌6 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/db8e202869114e5bb6f2a565dc66300e~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754037191&amp;x-signature=cP%2BW4OoaOd0kPlZ3%2BHVjqUjxgSk%3D" alt="東江泉" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand6"></span>
+                </div>
+                
+                <!-- 品牌7 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/026e0c29c95a4073995f70bcf7d67827~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025641&amp;x-signature=9KPlmOFq8R71uF26cuvwPivy%2BrM%3D" alt="幣友圈" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand7"></span>
+                </div>
+                
+                <!-- 品牌8 -->
+                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a1721490a3c142f5b6580989e1cfaceb~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754026355&amp;x-signature=XXWcFsGbZcbLTQ0QF7UVENTUxzk%3D" alt="極中品" class="mx-auto mb-2" width="160" height="80">
+                    <span class="text-primary font-medium" data-lang="brand8"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 东江泉产品 -->
+    <section class="py-20 bg-primary text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/4e361df4d7714d04bbf0b07e7148affa~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025970&amp;x-signature=91XF8a92g9rG5OtmAFiFXkUZtCM%3D" alt="东江泉天然泉水" class="w-full h-auto rounded-lg shadow-xl object-cover" loading="lazy" width="600" height="400">
+                </div>
+                
+                <div class="reveal" style="transition-delay: 0.2s">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-6" data-lang="dongjiangquan-title">东江泉·饮用天然泉水</h2>
+                    <p class="responsive-text mb-6 leading-relaxed" data-lang="dongjiangquan-desc1">2025年纪念东江水供港60周年之际，敦华集团推出香港品牌——东江泉·饮用天然泉水。</p>
+                    <p class="responsive-text mb-6 leading-relaxed" data-lang="dongjiangquan-desc2">该产品源自赣南东江源头和赣江源头的自然保护区交汇处，从深层花岗岩裂隙中抽取，含锶、偏硅酸的天然泉水，甘甜可口、绵柔顺滑。</p>
+                    <p class="responsive-text mb-8 leading-relaxed" data-lang="dongjiangquan-desc3">已经获得香港优质"正"印检测认证，是饮用解渴的佳品之选，是泡茶、煲汤和煮饭的黄金搭档。</p>
+                    
+                    <div class="flex items-center space-x-4 text-secondary">
+                        <i class="fa fa-check-circle text-xl"></i>
+                        <span data-lang="dongjiangquan-feature1">源自江西赣南地下280米</span>
                     </div>
-                    <div class="h-64 md:h-auto">
-                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c524c33ce9ee4e0cb8fb6c98b42baddb~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753975263&amp;x-signature=bJ5ju0T2TA%2Foi%2Fmkg%2FOR6UBcF8c%3D" alt="东江泉天然泉水" class="w-full h-full object-cover">
+                    <div class="flex items-center space-x-4 text-secondary mt-2">
+                        <i class="fa fa-check-circle text-xl"></i>
+                        <span data-lang="dongjiangquan-feature2">富含锶、偏硅酸等矿物质</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-secondary mt-2">
+                        <i class="fa fa-check-circle text-xl"></i>
+                        <span data-lang="dongjiangquan-feature3">香港优质"正"印检测认证</span>
                     </div>
                 </div>
             </div>
@@ -495,45 +508,48 @@
     </section>
 
     <!-- 战略布局 -->
-    <section id="strategy" class="py-20 bg-gray-50">
+    <section class="py-20 bg-neutral">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="strategy-title">战略布局</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto" data-lang="strategy-subtitle">与媒体及行业领先企业建立良好战略合作，扎根大湾区，面向全球化发展</p>
-                <div class="w-20 h-1 bg-secondary mx-auto mt-4"></div>
+                <div class="w-20 h-1 bg-secondary mx-auto"></div>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center reveal">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fa fa-handshake-o text-primary text-2xl"></i>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 战略1 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center reveal">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fa fa-handshake-o"></i>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-3" data-lang="strategy-1">战略合作</h3>
-                    <p class="text-gray-600 text-sm" data-lang="strategy-1-desc">與媒體及行業領先企業建立戰略合作。</p>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="strategy1-title">战略合作</h3>
+                    <p class="text-gray-600" data-lang="strategy1-desc">与媒体及行业领先企业建立战略合作，资源共享，协同发展。</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center reveal" style="transition-delay: 0.2s">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fa fa-map text-primary text-2xl"></i>
+                <!-- 战略2 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center reveal" style="transition-delay: 0.1s">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fa fa-map-marker"></i>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-3" data-lang="strategy-2">大灣區發展</h3>
-                    <p class="text-gray-600 text-sm" data-lang="strategy-2-desc">紮根大灣區，面向全球化發展。</p>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="strategy2-title">大湾区发展</h3>
+                    <p class="text-gray-600" data-lang="strategy2-desc">扎根大湾区，利用区域优势，拓展文化创意产业市场。</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center reveal" style="transition-delay: 0.4s">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fa fa-lightbulb-o text-primary text-2xl"></i>
+                <!-- 战略3 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center reveal" style="transition-delay: 0.2s">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fa fa-lightbulb-o"></i>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-3" data-lang="strategy-3">文化創意</h3>
-                    <p class="text-gray-600 text-sm" data-lang="strategy-3-desc">推動文化創意項目，注重文化內涵。</p>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="strategy3-title">文化创意</h3>
+                    <p class="text-gray-600" data-lang="strategy3-desc">推动文化创意项目，注重文化内涵，打造高品质文化产品。</p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow text-center reveal" style="transition-delay: 0.6s">
-                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fa fa-globe text-primary text-2xl"></i>
+                <!-- 战略4 -->
+                <div class="bg-white p-8 rounded-lg shadow-lg text-center reveal" style="transition-delay: 0.3s">
+                    <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 mx-auto">
+                        <i class="fa fa-globe"></i>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-3" data-lang="strategy-4">國際市場</h3>
-                    <p class="text-gray-600 text-sm" data-lang="strategy-4-desc">開拓國際市場，實現全球化佈局。</p>
+                    <h3 class="text-xl font-semibold text-primary mb-4" data-lang="strategy4-title">国际市场</h3>
+                    <p class="text-gray-600" data-lang="strategy4-desc">开拓国际市场，实现全球化布局，促进国际文化交流。</p>
                 </div>
             </div>
         </div>
@@ -544,724 +560,714 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="news-title">新闻动态</h2>
-                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 responsive-text" data-lang="news-desc">了解敦华集团最新动态、行业资讯及重要活动信息。</p>
             </div>
             
-            <!-- 新闻分类标签 -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
-                <button class="news-tab active px-6 py-2 rounded-full bg-primary text-white" data-tab="all" data-lang="news-all">全部</button>
-                <button class="news-tab px-6 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" data-tab="group" data-lang="news-group">集团新闻</button>
-                <button class="news-tab px-6 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" data-tab="industry" data-lang="news-industry">業界動態</button>
-                <button class="news-tab px-6 py-2 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors" data-tab="media" data-lang="news-media">媒體報導</button>
-            </div>
-            
-            <!-- 新闻列表 -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 新闻1 -->
-                <div class="news-item bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="group reveal">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1076/600/400" alt="集团新闻图片" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fa fa-calendar-o mr-2"></i>
-                            <span>2024-10-15</span>
-                            <span class="mx-2">•</span>
-                            <span data-lang="news-group">集团新闻</span>
-                        </div>
-                        <h3 class="font-bold text-primary text-lg mb-3" data-lang="news-1-title">敦华集团宣布新的战略投资计划</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-lang="news-1-desc">敦华集团今日宣布一项新的战略投资计划，将重点支持文化创意产业的新兴项目，预计将在未来三年内投入超过10亿港元。</p>
-                        <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm flex items-center" data-lang="read-more">
-                            阅读更多 <i class="fa fa-angle-right ml-2"></i>
-                        </a>
-                    </div>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <!-- 新闻分类1 -->
+                <div class="bg-neutral p-6 rounded-lg shadow-md reveal">
+                    <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
+                        <i class="fa fa-building-o mr-2 text-secondary"></i>
+                        <span data-lang="news-category1">集团新闻</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4" data-lang="news-category1-desc">发布集团最新消息，分享发展成果，包括新项目启动、战略合作等重要信息。</p>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors inline-flex items-center" data-lang="news-more">
+                        查看更多 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
                 
-                <!-- 新闻2 -->
-                <div class="news-item bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="industry reveal" style="transition-delay: 0.2s">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/1082/600/400" alt="业界动态图片" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fa fa-calendar-o mr-2"></i>
-                            <span>2023-09-28</span>
-                            <span class="mx-2">•</span>
-                            <span data-lang="news-industry">業界動態</span>
-                        </div>
-                        <h3 class="font-bold text-primary text-lg mb-3" data-lang="news-2-title">文化创意产业迎来新的发展机遇</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-lang="news-2-desc">隨着政策支持力度加大和市場需求增長，文化创意產業正迎來新的發展機遇，行業專家預計未來五年將保持兩位數增長。</p>
-                        <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm flex items-center" data-lang="read-more">
-                            阅读更多 <i class="fa fa-angle-right ml-2"></i>
-                        </a>
-                    </div>
+                <!-- 新闻分类2 -->
+                <div class="bg-neutral p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.2s">
+                    <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
+                        <i class="fa fa-line-chart mr-2 text-secondary"></i>
+                        <span data-lang="news-category2">业界动态</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4" data-lang="news-category2-desc">跟踪文化产业动态，洞悉市场趋势，分享行业前沿资讯和发展见解。</p>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors inline-flex items-center" data-lang="news-more">
+                        查看更多 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
                 
-                <!-- 新闻3 -->
-                <div class="news-item bg-gray-50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow" data-category="media reveal" style="transition-delay: 0.4s">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/8359b0c7417247aaa5fd7090c1b4cbfa~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753957598&amp;x-signature=g0tIsoDxD%2Fn7uGwoyHMlqA8aDrg%3D" alt="媒体报道图片" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <div class="p-6">
-                        <div class="flex items-center text-sm text-gray-500 mb-3">
-                            <i class="fa fa-calendar-o mr-2"></i>
-                            <span>2023-09-10</span>
-                            <span class="mx-2">•</span>
-                            <span data-lang="news-media">媒體報導</span>
-                        </div>
-                        <h3 class="font-bold text-primary text-lg mb-3" data-lang="news-3-title">敦华集团旗下青花瓷乐团获媒体广泛报道</h3>
-                        <p class="text-gray-600 text-sm mb-4 line-clamp-3" data-lang="news-3-desc">敦华集团旗下青花瓷乐团近期在国际音乐节上表现优异，获得多家主流媒体的广泛报道，被誉为"东方文化的使者"。</p>
-                        <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm flex items-center" data-lang="read-more">
-                            阅读更多 <i class="fa fa-angle-right ml-2"></i>
-                        </a>
-                    </div>
+                <!-- 新闻分类3 -->
+                <div class="bg-neutral p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.4s">
+                    <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
+                        <i class="fa fa-newspaper-o mr-2 text-secondary"></i>
+                        <span data-lang="news-category3">媒体报道</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4" data-lang="news-category3-desc">展示媒体对敦华集团的报道，提升品牌影响力，传递企业正能量。</p>
+                    <a href="#" class="text-secondary hover:text-primary transition-colors inline-flex items-center" data-lang="news-more">
+                        查看更多 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
             
-            <!-- 慈善计划 -->
-            <div class="mt-20 bg-primary/5 rounded-xl p-8 md:p-12 reveal active">
-                <h3 class="text-2xl font-bold text-primary mb-6 text-center" data-lang="charity-title">慈善計劃</h3>
-                
-                <!-- 新增的慈善活动图片 -->
-                <div class="mb-8">
-                    <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/b409a1451e964859a37653239ad5222a~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753959032&amp;x-signature=S3Vo7OqH78ZOyaPbGU9ndqgMjTc%3D" alt="敦华集团慈善活动" class="w-full h-64 md:h-80 object-cover rounded-lg shadow-md">
+            <!-- 慈善计划 - 增加图片 -->
+            <div class="bg-primary text-white p-8 rounded-lg shadow-lg reveal grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6" data-lang="charity-title">慈善计划</h3>
+                    <p class="responsive-text leading-relaxed mb-6" data-lang="charity-desc">我们致力于支持当地社区，并利用我们的影响力来激发积极的变革。我们相信要真正产生影响，回馈社会。通过各种计划，我们努力为每个人创造一个更加可持续和公平的世界。</p>
+                    <a href="#" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-6 py-2 rounded-lg transition-colors" data-lang="charity-more">了解更多</a>
                 </div>
-                
-                <p class="text-gray-700 leading-relaxed max-w-3xl mx-auto text-center" data-lang="charity-content">我們致力於支持當地社區，並利用我們的影響力來激發積極的變革。我們相信要真正產生影響，並回饋社會。通過各種計劃，我們努力為每個人創造一個更加可持續和公平的世界。</p>
+                <div>
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/cbebc5d702e44eb2b11e7e77d9679e91~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754036021&amp;x-signature=MtYkldhzajeI45GzbT5yWjLI2BM%3D" alt="敦华集团慈善计划" class="w-full h-auto rounded-lg shadow-lg" loading="lazy" width="600" height="400">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 联系我们 -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <!-- 联系我们 - 优化地图显示和排版 -->
+    <section id="contact" class="py-20 bg-neutral">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="contact-title">联系我们</h2>
-                <div class="w-20 h-1 bg-secondary mx-auto"></div>
+                <div class="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+                <p class="max-w-2xl mx-auto text-gray-600 responsive-text" data-lang="contact-desc">无论您是寻求合作、咨询业务还是加入我们，都欢迎与我们联系。</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 香港总部 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow reveal">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa fa-map-marker text-primary text-xl"></i>
+            <!-- 优化联系部分的网格布局，确保地图正确显示 -->
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <!-- 左侧：联系方式 -->
+                <div class="reveal">
+                    <div class="bg-white p-8 rounded-lg h-full shadow-md flex flex-col">
+                        <h3 class="text-2xl font-semibold text-primary mb-8" data-lang="contact-info">联系方式</h3>
+                        
+                        <div class="space-y-6 flex-grow">
+                            <!-- 香港地址 -->
+                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-4 flex items-center">
+                                    <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
+                                    <span data-lang="contact-hk" class="text-lg">香港总部</span>
+                                </h4>
+                                <p class="text-gray-600 pl-9 leading-relaxed whitespace-pre-line" data-lang="contact-hk-address">敦华集团有限公司
+东江泉(香港)食品饮料有限公司
+地址:香港屯门区伟昌工业中心地下I铺
+电话:+852-35905187</p>
+                            </div>
+                            
+                            <!-- 深圳地址 -->
+                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-4 flex items-center">
+                                    <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
+                                    <span data-lang="contact-sz" class="text-lg">深圳分部</span>
+                                </h4>
+                                <p class="text-gray-600 pl-9 leading-relaxed whitespace-pre-line" data-lang="contact-sz-address">深圳星媒娱乐有限公司
+深圳市敦华文化传播有限公司
+地址:深圳市盐田区中青路12号海桐居3栋105
+电话:0755-82952005</p>
+                            </div>
+                            
+                            <!-- 瑞金地址 -->
+                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-4 flex items-center">
+                                    <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
+                                    <span data-lang="contact-rj" class="text-lg">瑞金分部</span>
+                                </h4>
+                                <p class="text-gray-600 pl-9 leading-relaxed whitespace-pre-line" data-lang="contact-rj-address">瑞金市朱坊文化旅游有限公司
+瑞金朱坊康养小镇/青花瓷乐团
+地址:江西省瑞金市叶坪镇朱坊村红色康养小镇
+电话:0797-2589888</p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10 pt-6 border-t border-gray-100">
+                            <h4 class="font-medium text-gray-800 mb-6" data-lang="contact-follow">关注我们</h4>
+                            <div class="flex space-x-5">
+                                <a href="https://x.com/DunhuaGroup" target="_blank" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors" aria-label="Twitter">
+                                    <i class="fa fa-twitter text-xl"></i>
+                                </a>
+                                <a href="https://www.instagram.com/tungkongchuen/" target="_blank" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors" aria-label="Instagram">
+                                    <i class="fa fa-instagram text-xl"></i>
+                                </a>
+                                <a href="https://www.facebook.com/profile.php?id=61574551334213" target="_blank" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors" aria-label="Facebook">
+                                    <i class="fa fa-facebook text-xl"></i>
+                                </a>
+                                <a href="https://www.youtube.com/@TUNGKONGCHUEN" target="_blank" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-secondary transition-colors" aria-label="YouTube">
+                                    <i class="fa fa-youtube-play text-xl"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-4" data-lang="contact-hk">香港总部</h3>
-                    <p class="text-gray-600 mb-2">
-                        <span class="font-medium" data-lang="contact-company">敦華集團有限公司</span><br>
-                        <span class="font-medium" data-lang="contact-company2">東江泉(香港)食品飲料有限公司</span>
-                    </p>
-                    <p class="text-gray-600 mb-4 flex items-start">
-                        <i class="fa fa-building-o mt-1 mr-3 text-gray-400"></i>
-                        <span data-lang="contact-hk-address">香港屯門區偉昌工業中心地下I鋪</span>
-                    </p>
-                    <p class="text-gray-600 flex items-center">
-                        <i class="fa fa-phone mr-3 text-gray-400"></i>
-                        <span>+852-35905187</span>
-                    </p>
                 </div>
                 
-                <!-- 深圳分部 - 删除了邮箱联系方式 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow reveal" style="transition-delay: 0.2s">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa fa-map-marker text-primary text-xl"></i>
+                <!-- 右侧：谷歌地图 - 优化显示 -->
+                <div class="reveal" style="transition-delay: 0.2s">
+                    <div class="bg-white p-8 rounded-lg shadow-md h-full flex flex-col">
+                        <h3 class="text-2xl font-semibold text-primary mb-6" data-lang="contact-map-title">位置地图</h3>
+                        
+                        <!-- 地图容器 - 确保高度足够且响应式 -->
+                        <div class="map-container flex-grow">
+                            <!-- 使用更精确的地图链接，确保显示"敦华集团"位置 -->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14762.220064386438!2d113.972007!3d22.384414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2149d466a55c60e5!2z5pmu6YCa5Lqn5omL!5e0!3m2!1szh-CN!2sus!4v1719376800!5m2!1szh-CN!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" alt="敦华集团香港总部位置地图"></iframe>
+                        </div>
+                        
+                        <p class="mt-4 text-gray-600 text-sm" data-lang="contact-map-desc">敦华集团香港总部：香港屯门区伟昌工业中心地下I铺</p>
                     </div>
-                    <h3 class="font-bold text-primary text-lg mb-4" data-lang="contact-sz">深圳分部</h3>
-                    <p class="text-gray-600 mb-2">
-                        <span class="font-medium" data-lang="contact-company3">深圳星媒娱乐有限公司</span><br>
-                        <span class="font-medium" data-lang="contact-company4">深圳市敦华文化传播有限公司</span>
-                    </p>
-                    <p class="text-gray-600 mb-4 flex items-start">
-                        <i class="fa fa-building-o mt-1 mr-3 text-gray-400"></i>
-                        <span data-lang="contact-sz-address">深圳市盐田区中青路12号海桐居3栋105</span>
-                    </p>
-                    <p class="text-gray-600 flex items-center">
-                        <i class="fa fa-phone mr-3 text-gray-400"></i>
-                        <span>0755-22325005</span>
-                    </p>
-                </div>
-                
-                <!-- 江西分部 - 修改了公司名称并删除了一个电话号码 -->
-                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow reveal" style="transition-delay: 0.4s">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa fa-map-marker text-primary text-xl"></i>
-                    </div>
-                    <h3 class="font-bold text-primary text-lg mb-4" data-lang="contact-jx">江西分部</h3>
-                    <p class="text-gray-600 mb-2">
-                        <span class="font-medium" data-lang="contact-company5">瑞金市朱坊文化旅游有限公司</span><br>
-                        <span class="font-medium" data-lang="contact-company6">瑞金朱坊康養小镇/青花瓷乐团</span>
-                    </p>
-                    <p class="text-gray-600 mb-4 flex items-start">
-                        <i class="fa fa-building-o mt-1 mr-3 text-gray-400"></i>
-                        <span data-lang="contact-jx-address">江西省瑞金市叶坪镇朱坊村红色康养小镇</span>
-                    </p>
-                    <p class="text-gray-600 flex items-center">
-                        <i class="fa fa-phone mr-3 text-gray-400"></i>
-                        <span>0797-2589888</span>
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-primary text-white py-12">
+    <footer class="bg-primary text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                 <div>
-                    <div class="flex items-center space-x-2 mb-6">
-                        <!-- 页脚中也使用图片LOGO替代文字DH，底色设置为透明 -->
-                        <div class="w-10 h-10 rounded-lg flex items-center justify-center bg-transparent">
-                            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/9baad0e913bb4a2ba2117ce9b733d36a~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1753960701&amp;x-signature=nOqgiBl8N8pApUQ%2BYtyCHTVRPDk%3D" alt="敦华集团LOGO" class="w-6 h-6 object-contain">
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg" data-lang="logo">敦华集团</h3>
-                            <p class="text-white/70 text-xs">DUNHUA GROUP</p>
-                        </div>
-                    </div>
-                    <p class="text-white/70 text-sm mb-6" data-lang="footer-desc">专注于文化创意产业的投融資機構</p>
+                    <h3 class="text-xl font-bold mb-6 flex items-center">
+                        <!-- 替换DH为图片LOGO -->
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/7bfbc15de7eb4d95acd55d024a3d0043~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025777&amp;x-signature=Koc8WjqQvdpfS4J1qtC%2Fh5CwW6c%3D" alt="敦华集团LOGO" class="mr-2 bg-transparent" width="40" height="40">
+                        <span data-lang="footer-logo">敦华集团</span>
+                    </h3>
+                    <p class="text-gray-300 mb-6" data-lang="footer-desc">以国际文化交流为契机，专注服务于文化创意产业的投融资机构</p>
                     <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/profile.php?id=61574551334213" target="_blank" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-dark transition-colors">
-                            <i class="fa fa-facebook"></i>
+                        <a href="https://x.com/DunhuaGroup" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+                            <i class="fa fa-twitter text-xl"></i>
                         </a>
-                        <a href="https://x.com/DunhuaGroup" target="_blank" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-dark transition-colors">
-                            <i class="fa fa-twitter"></i>
+                        <a href="https://www.instagram.com/tungkongchuen/" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Instagram">
+                            <i class="fa fa-instagram text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/tungkongchuen/" target="_blank" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-dark transition-colors">
-                            <i class="fa fa-instagram"></i>
+                        <a href="https://www.facebook.com/profile.php?id=61574551334213" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Facebook">
+                            <i class="fa fa-facebook text-xl"></i>
                         </a>
-                        <a href="https://www.youtube.com/@TUNGKONGCHUEN" target="_blank" class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-secondary hover:text-dark transition-colors">
-                            <i class="fa fa-youtube-play"></i>
+                        <a href="https://www.youtube.com/@TUNGKONGCHUEN" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="YouTube">
+                            <i class="fa fa-youtube-play text-xl"></i>
                         </a>
                     </div>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-6" data-lang="footer-links">快速链接</h4>
+                    <h4 class="text-lg font-semibold mb-6" data-lang="footer-links1">快速链接</h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="nav-about">关于我们</a></li>
-                        <li><a href="#subsidiaries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="nav-subsidiaries">旗下公司</a></li>
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="nav-industries">核心产业</a></li>
-                        <li><a href="#achievements" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="nav-achievements">集团成就</a></li>
-                        <li><a href="#news" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="nav-news">新闻动态</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-about">关于我们</a></li>
+                        <li><a href="#industries" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-industries">核心产业</a></li>
+                        <li><a href="#subsidiaries" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-subsidiaries">旗下公司</a></li>
+                        <li><a href="#brands" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-brands">品牌商标</a></li>
+                        <li><a href="#news" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-news">新闻动态</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-contact">联系我们</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-6" data-lang="footer-industries">核心产业</h4>
+                    <h4 class="text-lg font-semibold mb-6" data-lang="footer-links2">核心产业</h4>
                     <ul class="space-y-3">
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="industry-1">影视出品</a></li>
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="industry-2">演藝制作</a></li>
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="industry-3">康旅研學</a></li>
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="industry-4">文創商貿</a></li>
-                        <li><a href="#industries" class="text-white/70 hover:text-white transition-colors text-sm" data-lang="business-1">演藝經紀</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry1">影视出品</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry2">演艺制作</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry3">康旅研学</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry4">文创商贸</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry5">演艺经纪</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="font-bold text-lg mb-6" data-lang="footer-contact">联系我们</h4>
+                    <h4 class="text-lg font-semibold mb-6" data-lang="footer-contact">联系我们</h4>
                     <ul class="space-y-3">
                         <li class="flex items-start">
-                            <i class="fa fa-map-marker mt-1 mr-3 text-white/70"></i>
-                            <span class="text-white/70 text-sm" data-lang="contact-hk-address">香港屯門區偉昌工業中心地下I鋪</span>
+                            <i class="fa fa-map-marker mt-1 mr-3 text-secondary"></i>
+                            <span class="text-gray-300" data-lang="footer-address">香港屯门区伟昌工业中心地下I铺</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fa fa-phone mr-3 text-white/70"></i>
-                            <span class="text-white/70 text-sm">+852-35905187</span>
+                            <i class="fa fa-phone mr-3 text-secondary"></i>
+                            <span class="text-gray-300" data-lang="footer-phone">+852-35905187</span>
                         </li>
                         <li class="flex items-center">
-                            <i class="fa fa-envelope mr-3 text-white/70"></i>
-                            <span class="text-white/70 text-sm">dunhuagroup@gmail.com</span>
+                            <i class="fa fa-envelope mr-3 text-secondary"></i>
+                            <span class="text-gray-300" data-lang="footer-email">dunhuagroup@gmail.com</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-white/10 pt-8 text-center">
-                <p class="text-white/50 text-sm" data-lang="copyright">敦華集團 版權所有    Copyright © 2016-2025</p>
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0" data-lang="footer-copyright">© 2016-2025 敦华集团 版权所有</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-lang="footer-privacy">隐私政策</a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-lang="footer-terms"></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors" data-lang="footer-sitemap"></a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300 hover:bg-secondary hover:text-dark">
-        <i class="fa fa-angle-up text-xl"></i>
-    </button>
-
     <script>
-        // 语言数据
-        const langData = {
-            "zh-Hant": {
-                "logo": "敦華集團",
-                "nav-about": "關於我們",
-                "nav-subsidiaries": "旗下公司",
-                "nav-industries": "核心產業",
-                "nav-achievements": "集團成就",
-                "nav-strategy": "戰略佈局",
-                "nav-news": "新聞動態",
-                "nav-contact": "聯繫我們",
-                "hero-title": "敦華集團",
-                "hero-subtitle": "DUNHUA GROUP",
-                "hero-desc": "专注于文化创意产业的投融資機構",
-                "hero-btn": "了解更多",
-                "about-title": "關於我們",
-                "about-content": "敦華集團是一家以文化創意產業為發展方向的投融資機構,總部位於香港屯門區。公司在影視出品、演藝製作、康旅研學、文創商貿等領域全力拓展,成功投資主辦和承辦了數百場大型演出,出品多部院線電影,並投資運營文旅康養小鎮和創立\"東江泉\"飲用水品牌。透過整合海內外資本，以及中外文化交流項目合作，敦華集團致力於推動文化產業的發展。",
-                "about-global": "全球化佈局",
-                "about-global-desc": "整合海內外資本，拓展國際市場",
-                "about-cooperation": "戰略合作",
-                "about-cooperation-desc": "與媒體及行業領先企業建立良好合作",
-                "about-creative": "文化創意",
-                "about-creative-desc": "推動文化創意項目，注重文化內涵",
-                "about-social": "社會責任",
-                "about-social-desc": "支持社區發展，回饋社會大眾",
-                "subsidiaries-title": "集團控股",
-                "subsidiaries-subtitle": "", // 删除了文本
-                "invested-brands": "旗下部分投資品牌",
-                "subsidiary-companies": "旗下部分投資控股子公司",
-                "sub-1": "敦華文化傳播有限公司",
-                "sub-2": "深圳市青花瓷樂團",
-                "sub-3": "東江泉(香港)食品飲料有限公司",
-                "sub-4": "歲金珠寶行",
-                "sub-5": "瑞金市朱坊康養小鎮",
-                "sub-6": "瑞金市朱坊文化旅遊有限公司",
-                "sub-7": "景洪敦華貿易商行",
-                "sub-8": "寧波星媒時代廣告有限公司",
-                "sub-desc": "點擊了解更多",
-                "industries-title": "核心產業",
-                "industries-subtitle": "集團主要四大核心產業",
-                "industry-1": "影視出品",
-                "industry-1-desc": "製作電影、電視劇、紀錄片等影視作品包括選題、劇本創作、籌資、預算管理、拍攝、後期製作、宣傳推廣等環節。",
-                "industry-2": "演藝制作",
-                "industry-2-desc": "音樂劇、舞蹈表演、戲劇演出等各種演藝包括編排、排練、舞美設計、演員選擇、燈光音效設置、劇碼策劃等環節。",
-                "industry-3": "康旅研學",
-                "industry-3-desc": "康旅和學習相結合體驗式教育方式，學生或遊客參與各種戶外活動、文化學習等，提供身心健康、知識增長和團隊合作的機會。",
-                "industry-4": "文創商貿",
-                "industry-4-desc": "文創產業涵蓋文化藝術、設計、傳媒、數字內容等領域，包括創意產品設計、文化藝術展覽、創意活動策劃、知識產權經營等。",
-                "special-business": "特色業務",
-                "business-1": "演藝經紀",
-                "business-1-desc": "敦華經紀人業務系敦華的創始業務，多年來與眾多一線明星藝人建立深厚友誼及戰略夥伴關係！",
-                "business-2": "康養小鎮",
-                "business-2-desc": "小鎮是集旅遊、休閑、娛樂、民宿、餐飲、會議、團建、拓展培訓、健康論壇、養生養老爲一體的綜合性旅遊度假區。",
-                "achievements-title": "集團成就",
-                "achievements-subtitle": "多年來，敦華集團在文化创意產業取得的重要成就",
-                "achievement-1": "大型演出項目",
-                "achievement-2": "院線電影",
-                "achievement-3": "投資運營實業",
-                "achievement-4": "康養小鎮",
-                "dongjiangquan": "東江泉",
-                "dongjiangquan-slogan": "2025年為紀念東江水供港60周年,敦華集團推出了\"東江泉·飲用天然泉水\"品牌。",
-                "dongjiangquan-desc": "水源來自江西赣南地下280米，是集團旗下優質食品飲料業務的代表，秉承品質至上的理念，為大眾提供健康優質的天然泉水。",
-                "strategy-title": "戰略佈局",
-                "strategy-subtitle": "與媒體及行業領先企業建立良好戰略合作，紮根大灣區，面向全球化發展",
-                "strategy-1": "戰略合作",
-                "strategy-1-desc": "與媒體及行業領先企業建立戰略合作。",
-                "strategy-2": "大灣區發展",
-                "strategy-2-desc": "紮根大灣區，面向全球化發展。",
-                "strategy-3": "文化創意",
-                "strategy-3-desc": "推動文化創意項目，注重文化內涵。",
-                "strategy-4": "國際市場",
-                "strategy-4-desc": "開拓國際市場，實現全球化佈局。",
-                "news-title": "新聞動態",
-                "news-all": "全部",
-                "news-group": "集團新聞",
-                "news-industry": "業界動態",
-                "news-media": "媒體報導",
-                "news-1-title": "敦華集團宣布新的戰略投資計劃",
-                "news-1-desc": "敦華集團今日宣布一項新的戰略投資計劃，將重點支持文化创意產業的新興項目，預計將在未來三年內投入超過10億港元。",
-                "news-2-title": "文化创意產業迎來新的發展機遇",
-                "news-2-desc": "隨着政策支持力度加大和市場需求增長，文化创意產業正迎來新的發展機遇，行業專家預計未來五年將保持兩位數增長。",
-                "news-3-title": "敦華集團旗下青花瓷樂團獲媒體廣泛報導",
-                "news-3-desc": "敦華集團旗下青花瓷樂團近期在國際音樂節上表現優異，獲得多家主流媒體的廣泛報導，被譽為「東方文化的使者」。",
-                "read-more": "閱讀更多",
-                "charity-title": "慈善計劃",
-                "charity-content": "我們致力於支持當地社區，並利用我們的影響力來激發積極的變革。我們相信要真正產生影響，並回饋社會。通過各種計劃，我們努力為每個人創造一個更加可持續和公平的世界。",
-                "contact-title": "聯繫我們",
-                "contact-hk": "香港總部",
-                "contact-sz": "深圳分部",
-                "contact-jx": "江西分部",
-                "contact-company": "敦華集團有限公司",
-                "contact-company2": "東江泉(香港)食品飲料有限公司",
-                "contact-company3": "深圳星媒娛樂有限公司",
-                "contact-company4": "深圳市敦華文化傳播有限公司",
-                "contact-company5": "瑞金市朱坊文化旅遊有限公司",
-                "contact-company6": "瑞金朱坊康養小镇/青花瓷乐团",
-                "contact-company7": "東江泉天然泉水基地",
-                "contact-hk-address": "香港屯門區偉昌工業中心地下I鋪",
-                "contact-sz-address": "深圳市鹽田區中青路12號海桐居3棟105",
-                "contact-jx-address": "江西省瑞金市葉坪鎮朱坊村紅色康養小鎮",
-                "footer-links": "快速鏈接",
-                "footer-industries": "核心產業",
-                "footer-contact": "聯繫我們",
-                "footer-desc": "专注于文化创意产业的投融資機構",
-                "copyright": "敦華集團 版權所有    Copyright © 2016-2025"
-            },
-            "zh-CN": {
-                "logo": "敦华集团",
-                "nav-about": "关于我们",
-                "nav-subsidiaries": "旗下公司",
-                "nav-industries": "核心产业",
-                "nav-achievements": "集团成就",
-                "nav-strategy": "战略布局",
-                "nav-news": "新闻动态",
-                "nav-contact": "联系我们",
-                "hero-title": "敦华集团",
-                "hero-subtitle": "DUNHUA GROUP",
-                "hero-desc": "专注于文化创意产业的投融资机构",
-                "hero-btn": "了解更多",
-                "about-title": "关于我们",
-                "about-content": "敦华集团是一家以文化创意产业为发展方向的投融资机构,总部位于香港屯门区。公司在影视出品、演艺制作、康旅研学、文创商贸等领域全力拓展,成功投资主办和承办了数百场大型演出,出品多部院线电影,并投资运营文旅康养小镇和创立\"东江泉\"饮用水品牌。通过整合海内外资本，以及中外文化交流项目合作，敦华集团致力于推动文化产业的发展。",
-                "about-global": "全球化布局",
-                "about-global-desc": "整合海内外资本，拓展国际市场",
-                "about-cooperation": "战略合作",
-                "about-cooperation-desc": "与媒体及行业领先企业建立良好合作",
-                "about-creative": "文化创意",
-                "about-creative-desc": "推动文化创意项目，注重文化内涵",
-                "about-social": "社会责任",
-                "about-social-desc": "支持社区发展，回馈社会大众",
-                "subsidiaries-title": "集团控股",
-                "subsidiaries-subtitle": "",
-                "invested-brands": "旗下部分投资品牌",
-                "subsidiary-companies": "旗下部分投资控股子公司",
-                "sub-1": "敦华文化传播有限公司",
-                "sub-2": "深圳市青花瓷乐团",
-                "sub-3": "东江泉(香港)食品饮料有限公司",
-                "sub-4": "岁金珠宝行",
-                "sub-5": "瑞金市朱坊康养小镇",
-                "sub-6": "瑞金市朱坊文化旅游有限公司",
-                "sub-7": "景洪敦华贸易商行",
-                "sub-8": "宁波星媒时代广告有限公司",
-                "sub-desc": "点击了解更多",
-                "industries-title": "核心产业",
-                "industries-subtitle": "集团主要四大核心产业",
-                "industry-1": "影视出品",
-                "industry-1-desc": "制作电影、电视剧、纪录片等影视作品包括选题、剧本创作、筹资、预算管理、拍摄、后期制作、宣传推广等环节。",
-                "industry-2": "演艺制作",
-                "industry-2-desc": "音乐剧、舞蹈表演、戏剧演出等各种演艺包括编排、排练、舞美设计、演员选择、灯光音效设置、剧码策划等环节。",
-                "industry-3": "康旅研学",
-                "industry-3-desc": "康旅和学习相结合体验式教育方式，学生或游客参与各种户外活动、文化学习等，提供身心健康、知识增长和团队合作的机会。",
-                "industry-4": "文创商贸",
-                "industry-4-desc": "文创产业涵盖文化艺术、设计、传媒、数字内容等领域，包括创意产品设计、文化艺术展览、创意活动策划、知识产权经营等。",
-                "special-business": "特色业务",
-                "business-1": "演艺经纪",
-                "business-1-desc": "敦华经纪人业务系敦华的创始业务，多年来与众多一线明星艺人建立深厚友谊及战略伙伴关系！",
-                "business-2": "康养小镇",
-                "business-2-desc": "小镇是集旅游、休闲、娱乐、民宿、餐饮、会议、团建、拓展培训、健康论坛、养生养老为一体的综合性旅游度假区。",
-                "achievements-title": "集团成就",
-                "achievements-subtitle": "多年来，敦华集团在文化创意产业取得的重要成就",
-                "achievement-1": "大型演出项目",
-                "achievement-2": "院线电影",
-                "achievement-3": "投资运营实业",
-                "achievement-4": "康养小镇",
-                "dongjiangquan": "东江泉",
-                "dongjiangquan-slogan": "2025年为纪念东江水供港60周年,敦华集团推出了\"东江泉·饮用天然泉水\"品牌。",
-                "dongjiangquan-desc": "水源来自江西赣南地下280米，是集团旗下优质食品饮料业务的代表，秉承品质至上的理念，为大众提供健康优质的天然泉水。",
-                "strategy-title": "战略布局",
-                "strategy-subtitle": "与媒体及行业领先企业建立良好战略合作，扎根大湾区，面向全球化发展",
-                "strategy-1": "战略合作",
-                "strategy-1-desc": "与媒体及行业领先企业建立战略合作。",
-                "strategy-2": "大湾区发展",
-                "strategy-2-desc": "扎根大湾区，面向全球化发展。",
-                "strategy-3": "文化创意",
-                "strategy-3-desc": "推动文化创意项目，注重文化内涵。",
-                "strategy-4": "国际市场",
-                "strategy-4-desc": "开拓国际市场，实现全球化布局。",
-                "news-title": "新闻动态",
-                "news-all": "全部",
-                "news-group": "集团新闻",
-                "news-industry": "业界动态",
-                "news-media": "媒体报道",
-                "news-1-title": "敦华集团宣布新的战略投资计划",
-                "news-1-desc": "敦华集团今日宣布一项新的战略投资计划，将重点支持文化创意产业的新兴项目，预计将在未来三年内投入超过10亿港元。",
-                "news-2-title": "文化创意产业迎来新的发展机遇",
-                "news-2-desc": "随着政策支持力度加大和市场需求增长，文化创意产业正迎来新的发展机遇，行业专家预计未来五年将保持两位数增长。",
-                "news-3-title": "敦华集团旗下青花瓷乐团获媒体广泛报道",
-                "news-3-desc": "敦华集团旗下青花瓷乐团近期在国际音乐节上表现优异，获得多家主流媒体的广泛报道，被誉为\"东方文化的使者\"。",
-                "read-more": "阅读更多",
-                "charity-title": "慈善计划",
-                "charity-content": "我们致力于支持当地社区，并利用我们的影响力来激发积极的变革。我们相信要真正产生影响，并回馈社会。通过各种计划，我们努力为每个人创造一个更加可持续和公平的世界。",
-                "contact-title": "联系我们",
-                "contact-hk": "香港总部",
-                "contact-sz": "深圳分部",
-                "contact-jx": "江西分部",
-                "contact-company": "敦华集团有限公司",
-                "contact-company2": "东江泉(香港)食品饮料有限公司",
-                "contact-company3": "深圳星媒娱乐有限公司",
-                "contact-company4": "深圳市敦华文化传播有限公司",
-                "contact-company5": "瑞金市朱坊文化旅游有限公司",
-                "contact-company6": "瑞金朱坊康养小镇/青花瓷乐团",
-                "contact-company7": "东江泉天然泉水基地",
-                "contact-hk-address": "香港屯门区伟昌工业中心地下I铺",
-                "contact-sz-address": "深圳市盐田区中青路12号海桐居3栋105",
-                "contact-jx-address": "江西省瑞金市叶坪镇朱坊村红色康养小镇",
-                "footer-links": "快速链接",
-                "footer-industries": "核心产业",
-                "footer-contact": "联系我们",
-                "footer-desc": "专注于文化创意产业的投融资机构",
-                "copyright": "敦华集团 版权所有    Copyright © 2016-2025"
-            },
-            "en": {
-                "logo": "DUNHUA GROUP",
-                "nav-about": "About Us",
-                "nav-subsidiaries": "Subsidiaries",
-                "nav-industries": "Core Industries",
-                "nav-achievements": "Achievements",
-                "nav-strategy": "Strategy",
-                "nav-news": "News",
-                "nav-contact": "Contact",
-                "hero-title": "DUNHUA GROUP",
-                "hero-subtitle": "敦華集團",
-                "hero-desc": "An investment institution focusing on cultural and creative industries",
-                "hero-btn": "Learn More",
-                "about-title": "About Us",
-                "about-content": "Dunhua Group is an investment and financing institution focusing on cultural and creative industries, with its headquarters located in Tuen Mun District, Hong Kong. The company has fully expanded in the fields of film and television production, performing arts production, health tourism and research, cultural and creative commerce. It has successfully invested in, hosted and organized hundreds of large-scale performances, produced several theatrical films, invested in and operated cultural tourism and health care towns, and founded the \"Dongjiang Spring\" drinking water brand. Through integrating domestic and foreign capital and cooperating in Sino-foreign cultural exchange projects, Dunhua Group is committed to promoting the development of cultural industries.",
-                "about-global": "Global Layout",
-                "about-global-desc": "Integrate domestic and foreign capital, expand international markets",
-                "about-cooperation": "Strategic Cooperation",
-                "about-cooperation-desc": "Establish good cooperation with media and industry-leading enterprises",
-                "about-creative": "Cultural Creativity",
-                "about-creative-desc": "Promote cultural and creative projects, focus on cultural connotation",
-                "about-social": "Social Responsibility",
-                "about-social-desc": "Support community development and give back to the society",
-                "subsidiaries-title": "Group Holdings",
-                "subsidiaries-subtitle": "",
-                "invested-brands": "Some Invested Brands",
-                "subsidiary-companies": "Some Subsidiaries",
-                "sub-1": "Dunhua Culture Communication Co., Ltd",
-                "sub-2": "Shenzhen Blue and White Porcelain Orchestra",
-                "sub-3": "Dongjiang Spring (Hong Kong) Food and Beverage Co., Ltd",
-                "sub-4": "Sui Jin Jewelry Store",
-                "sub-5": "Ruijin Zhufang Health Care Town",
-                "sub-6": "Ruijin Zhufang Cultural Tourism Co., Ltd",
-                "sub-7": "Jinghong Dunhua Trading Firm",
-                "sub-8": "Ningbo Star Media Era Advertising Co., Ltd",
-                "sub-desc": "Click to learn more",
-                "industries-title": "Core Industries",
-                "industries-subtitle": "Four main core industries of the group",
-                "industry-1": "Film & TV Production",
-                "industry-1-desc": "Producing films, TV dramas, documentaries and other video works, including topic selection, script creation, financing, budget management, shooting, post-production, publicity and promotion.",
-                "industry-2": "Performing Arts Production",
-                "industry-2-desc": "Musicals, dance performances, drama performances and other performances, including choreography, rehearsal, stage design, actor selection, lighting and sound settings, and repertoire planning.",
-                "industry-3": "Health Tourism & Study",
-                "industry-3-desc": "An experiential education method combining health tourism and learning, where students or tourists participate in various outdoor activities and cultural learning, providing opportunities for physical and mental health, knowledge growth and team cooperation.",
-                "industry-4": "Cultural & Creative Commerce",
-                "industry-4-desc": "Cultural and creative industries cover cultural and artistic, design, media, digital content and other fields, including creative product design, cultural and art exhibitions, creative event planning, intellectual property management, etc.",
-                "special-business": "Special Businesses",
-                "business-1": "Performing Arts Agency",
-                "business-1-desc": "Dunhua's agent business is Dunhua's founding business. Over the years, it has established deep friendships and strategic partnerships with many first-line stars and artists!",
-                "business-2": "Health Care Town",
-                "business-2-desc": "The town is a comprehensive tourist resort integrating tourism, leisure, entertainment, homestays, catering, conferences, team building, outreach training, health forums, and health care for the elderly.",
-                "achievements-title": "Group Achievements",
-                "achievements-subtitle": "Over the years, Dunhua Group has made important achievements in the cultural and creative industries",
-                "achievement-1": "Large-scale performances",
-                "achievement-2": "Theatrical films",
-                "achievement-3": "Investment in industries",
-                "achievement-4": "Health care towns",
-                "dongjiangquan": "Dongjiang Spring",
-                "dongjiangquan-slogan": "In 2025, to commemorate the 60th anniversary of Dongjiang water supply to Hong Kong, Dunhua Group launched the \"Dongjiang Spring·Natural Spring Water for Drinking\" brand.",
-                "dongjiangquan-desc": "The water source comes from 280 meters underground in southern Jiangxi. It is a representative of the group's high-quality food and beverage business. Adhering to the concept of quality first, it provides the public with healthy and high-quality natural spring water.",
-                "strategy-title": "Strategic Layout",
-                "strategy-subtitle": "Establish good strategic cooperation with media and industry-leading enterprises, rooted in the Greater Bay Area, and develop globally",
-                "strategy-1": "Strategic Cooperation",
-                "strategy-1-desc": "Establish strategic cooperation with media and industry-leading enterprises.",
-                "strategy-2": "Greater Bay Area Development",
-                "strategy-2-desc": "Rooted in the Greater Bay Area and developing globally.",
-                "strategy-3": "Cultural Creativity",
-                "strategy-3-desc": "Promote cultural and creative projects and focus on cultural connotation.",
-                "strategy-4": "International Market",
-                "strategy-4-desc": "Explore international markets and realize global layout.",
-                "news-title": "News & Updates",
-                "news-all": "All",
-                "news-group": "Group News",
-                "news-industry": "Industry News",
-                "news-media": "Media Reports",
-                "news-1-title": "Dunhua Group announces new strategic investment plan",
-                "news-1-desc": "Dunhua Group today announced a new strategic investment plan that will focus on supporting emerging projects in the cultural and creative industries, with an expected investment of over HK$1 billion in the next three years.",
-                "news-2-title": "Cultural and creative industries usher in new development opportunities",
-                "news-2-desc": "With increasing policy support and growing market demand, the cultural and creative industries are ushering in new development opportunities, with industry experts predicting double-digit growth in the next five years.",
-                "news-3-title": "Dunhua Group's Blue and White Porcelain Orchestra receives extensive media coverage",
-                "news-3-desc": "Dunhua Group's Blue and White Porcelain Orchestra recently performed excellently at an international music festival, receiving extensive coverage from many mainstream media and being hailed as \"Ambassador of Oriental Culture\".",
-                "read-more": "Read more",
-                "charity-title": "Charity Programs",
-                "charity-content": "We are committed to supporting local communities and using our influence to inspire positive change. We believe in making a real impact and giving back to society. Through various programs, we strive to create a more sustainable and equitable world for everyone.",
-                "contact-title": "Contact Us",
-                "contact-hk": "Hong Kong Headquarters",
-                "contact-sz": "Shenzhen Branch",
-                "contact-jx": "Jiangxi Branch",
-                "contact-company": "Dunhua Group Limited",
-                "contact-company2": "Dongjiang Spring (Hong Kong) Food and Beverage Co., Ltd",
-                "contact-company3": "Shenzhen Star Media Entertainment Co., Ltd",
-                "contact-company4": "Shenzhen Dunhua Culture Communication Co., Ltd",
-                "contact-company5": "Ruijin Zhufang Cultural Tourism Co., Ltd",
-                "contact-company6": "Ruijin Zhufang Health Care Town/Blue and White Porcelain Orchestra",
-                "contact-company7": "Dongjiang Spring Natural Spring Water Base",
-                "contact-hk-address": "Shop I, G/F, Wai Cheong Industrial Centre, Tuen Mun, Hong Kong",
-                "contact-sz-address": "No. 12 Zhongqing Road, Yantian District, Shenzhen, Unit 105, Building 3, Haitongju",
-                "contact-jx-address": "Red Health Care Town, Zhufang Village, Yeping Town, Ruijin City, Jiangxi Province",
-                "footer-links": "Quick Links",
-                "footer-industries": "Core Industries",
-                "footer-contact": "Contact Us",
-                "footer-desc": "An investment institution focusing on cultural and creative industries",
-                "copyright": "Dunhua Group All Rights Reserved    Copyright © 2016-2025"
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled', 'bg-primary/90', 'backdrop-blur', 'shadow-lg');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('scrolled', 'bg-primary/90', 'backdrop-blur', 'shadow-lg');
+                navbar.classList.add('bg-transparent');
             }
-        };
-
-        // 切换语言
-        function changeLanguage(lang) {
-            document.documentElement.lang = lang;
-            const elements = document.querySelectorAll('[data-lang]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-lang');
-                if (langData[lang] && langData[lang][key]) {
-                    el.textContent = langData[lang][key];
-                }
-            });
+        });
+        
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // 滚动动画触发逻辑
+        function checkReveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
             
-            // 高亮当前语言按钮
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('text-primary', 'font-bold');
-                } else {
-                    btn.classList.remove('text-primary', 'font-bold');
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150; // 触发点
+                
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('active');
                 }
             });
         }
-
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化语言为繁体中文
-            changeLanguage('zh-Hant');
-            
-            // 语言切换按钮事件
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    changeLanguage(lang);
-                });
-            });
-            
-            // 移动端菜单切换
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            menuToggle.addEventListener('click', function() {
-                if (mobileMenu.classList.contains('opacity-0')) {
-                    mobileMenu.classList.remove('opacity-0', '-translate-y-full', 'pointer-events-none');
-                    mobileMenu.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                    menuToggle.innerHTML = '<i class="fa fa-times text-xl"></i>';
-                } else {
-                    mobileMenu.classList.add('opacity-0', '-translate-y-full', 'pointer-events-none');
-                    mobileMenu.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                    menuToggle.innerHTML = '<i class="fa fa-bars text-xl"></i>';
-                }
-            });
-            
-            // 导航栏滚动效果
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('bg-white', 'shadow-md');
-                    navbar.classList.remove('bg-transparent');
-                } else {
-                    navbar.classList.remove('bg-white', 'shadow-md');
-                    navbar.classList.add('bg-transparent');
-                }
-                
-                // 显示/隐藏返回顶部按钮
-                const backToTop = document.getElementById('back-to-top');
-                if (window.scrollY > 300) {
-                    backToTop.classList.remove('opacity-0', 'invisible');
-                    backToTop.classList.add('opacity-100', 'visible');
-                } else {
-                    backToTop.classList.add('opacity-0', 'invisible');
-                    backToTop.classList.remove('opacity-100', 'visible');
-                }
-                
-                // 滚动动画
-                revealElements();
-            });
-            
-            // 返回顶部功能
-            document.getElementById('back-to-top').addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // 新闻标签切换
-            const newsTabs = document.querySelectorAll('.news-tab');
-            const newsItems = document.querySelectorAll('.news-item');
-            
-            newsTabs.forEach(tab => {
-                tab.addEventListener('click', function() {
-                    // 移除所有标签的活跃状态
-                    newsTabs.forEach(t => {
-                        t.classList.remove('active', 'bg-primary', 'text-white');
-                        t.classList.add('bg-gray-200');
-                    });
-                    
-                    // 添加当前标签的活跃状态
-                    this.classList.add('active', 'bg-primary', 'text-white');
-                    this.classList.remove('bg-gray-200');
-                    
-                    const tabValue = this.getAttribute('data-tab');
-                    
-                    // 显示/隐藏对应的新闻项
-                    newsItems.forEach(item => {
-                        if (tabValue === 'all' || item.getAttribute('data-category') === tabValue) {
-                            item.style.display = 'block';
-                        } else {
-                            item.style.display = 'none';
-                        }
-                    });
-                });
-            });
-            
-            // 数字计数动画
-            function animateCounters() {
-                const counters = document.querySelectorAll('.counter');
-                const speed = 200;
-                
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const increment = target / speed;
-                    
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + increment);
-                        setTimeout(animateCounters, 1);
-                    } else {
-                        counter.innerText = target + (target === 100 ? '+' : '');
+        
+        // 初始检查+滚动监听
+        window.addEventListener('load', checkReveal);
+        window.addEventListener('scroll', checkReveal);
+        
+        // 多语言数据
+        const translations = {
+            'zh-CN': {
+                'nav-logo': '敦华集团',
+                'nav-about': '关于我们',
+                'nav-industries': '核心产业',
+                'nav-subsidiaries': '旗下公司',
+                'nav-brands': '品牌商标',
+                'nav-news': '新闻动态',
+                'nav-contact': '联系我们',
+                'hero-title': '敦华集团',
+                'hero-desc': '文化创意产业先行者 · 国际文化交流桥梁',
+                'hero-btn': '了解更多',
+                'about-title': '关于我们',
+                'about-subtitle': '集团简介',
+                'about-text1': '敦华集团有限公司位于香港屯门区，是以国际文化交流为契机，专注服务于文化创意产业的投融资机构。旗下控股公司遍布香港、深圳、北京、赣州等地。',
+                'about-text2': '公司以影视出品、演艺制作、康旅研学、文创商贸等四大核心文化产业为发展方向，在各自领域全力拓展，成功投资主办、承办了数百场大型演出项目，出品拍摄多部院线电影，投资并运营文旅康养小镇，创立"东江泉"饮用水品牌，是文创行业发展先行者。',
+                'about-stat1': '100+',
+                'about-stat1-text': '大型演出项目',
+                'about-stat2': '6+',
+                'about-stat2-text': '院线电影出品',
+                'about-stat3': '8+',
+                'about-stat3-text': '控股子公司',
+                'about-stat4': '9+',
+                'about-stat4-text': '品牌商标',
+                'industries-title': '核心产业',
+                'industries-desc': '敦华集团以四大核心文化产业为发展方向，在各自领域全力拓展，打造文化创意产业生态圈。',
+                'industry1-title': '影视出品',
+                'industry1-text': '制作电影、电视剧、纪录片等影视作品，涵盖选题、剧本创作、筹资、预算管理、拍摄、后期制作及宣传推广等全流程。',
+                'industry2-title': '演艺制作',
+                'industry2-text': '包括音乐剧、舞蹈表演、戏剧演出等多种演艺形式，涉及编排、排练、舞美设计、演员选择、灯光音效设置及剧码策划等环节。',
+                'industry3-title': '康旅研学',
+                'industry3-text': '将康养旅游和学习相结合的体验式教育方式，为学生或游客提供参与户外活动、文化学习、身心健康提升的机会。',
+                'industry4-title': '文创商贸',
+                'industry4-text': '涵盖文化艺术、设计、传媒、数字内容等领域，包括创意产品设计、文化艺术展览、创意活动策划及知识产权经营等。',
+                'industry5-title': '演艺经纪',
+                'industry5-text': '敦华的创始业务，多年来与众多一线明星艺人建立深厚友谊及战略伙伴关系，提供专业的艺人经纪服务。我们的服务包括艺人包装、推广、商业演出安排、合约管理等全方位支持。',
+                'industry6-title': '实业投资',
+                'industry6-text': '投资运营文旅康养小镇、饮用水品牌等实业项目，作为行业发展先行者，打造多元化文化产业布局。我们专注于有长期发展潜力的实体项目，追求可持续的投资回报。',
+                'subsidiaries-title': '旗下公司',
+                'subsidiaries-desc': '敦华集团旗下拥有多家专业子公司，业务覆盖香港、深圳、北京、赣州等地，形成协同发展的产业格局。',
+                'sub1': '敦华文化传播有限公司',
+                'sub1-desc': '文化项目策划与执行',
+                'sub2': '深圳市青花瓷樂團',
+                'sub2-desc': '专业音乐演出团体',
+                'sub3': '敦华演艺经纪有限公司',
+                'sub3-desc': '艺人经纪与管理服务',
+                'sub4': '歲金珠寶行',
+                'sub4-desc': '珠宝设计与销售',
+                'sub5': '瑞金市朱坊康養小鎮',
+                'sub5-desc': '康养旅游综合体',
+                'sub6': '瑞金市朱坊文化旅遊有限公司',
+                'sub6-desc': '文化旅游项目开发',
+                'sub7': '景洪敦华貿易商行',
+                'sub7-desc': '文化产品贸易',
+                'sub8': '寧波星媒時代广告有限公司',
+                'sub8-desc': '广告策划与媒体服务',
+                'sub9': '東江泉(香港)食品飲料有限公司',
+                'sub9-desc': '天然泉水生产与销售',
+                'brands-title': '品牌商标',
+                'brands-desc': '敦华集团旗下拥有多个知名品牌，覆盖文化、旅游、商贸等多个领域。',
+                'brand1': '敦华文化',
+                'brand2': '青花瓷樂團',
+                'brand3': '朱坊文旅',
+                'brand4': '星媒',
+                'brand5': '敦華薈',
+                'brand6': '東江泉',
+                'brand7': '幣友圈',
+                'brand8': '歲金行',
+                'dongjiangquan-title': '东江泉·饮用天然泉水',
+                'dongjiangquan-desc1': '2025年纪念东江水供港60周年之际，敦华集团推出香港品牌——东江泉·饮用天然泉水。',
+                'dongjiangquan-desc2': '该产品源自赣南东江源头和赣江源头的自然保护区交汇处，从深层花岗岩裂隙中抽取，含锶、偏硅酸的天然泉水，甘甜可口、绵柔顺滑。',
+                'dongjiangquan-desc3': '已经获得香港优质"正"印检测认证，是饮用解渴的佳品之选，是泡茶、煲汤和煮饭的黄金搭档。',
+                'dongjiangquan-feature1': '源自江西赣南地下280米',
+                'dongjiangquan-feature2': '富含锶、偏硅酸等矿物质',
+                'dongjiangquan-feature3': '香港优质"正"印检测认证',
+                'strategy-title': '战略布局',
+                'strategy1-title': '战略合作',
+                'strategy1-desc': '与媒体及行业领先企业建立战略合作，资源共享，协同发展。',
+                'strategy2-title': '大湾区发展',
+                'strategy2-desc': '扎根大湾区，利用区域优势，拓展文化创意产业市场。',
+                'strategy3-title': '文化创意',
+                'strategy3-desc': '推动文化创意项目，注重文化内涵，打造高品质文化产品。',
+                'strategy4-title': '国际市场',
+                'strategy4-desc': '开拓国际市场，实现全球化布局，促进国际文化交流。',
+                'news-title': '新闻动态',
+                'news-desc': '了解敦华集团最新动态、行业资讯及重要活动信息。',
+                'news-category1': '集团新闻',
+                'news-category1-desc': '发布集团最新消息，分享发展成果，包括新项目启动、战略合作等重要信息。',
+                'news-category2': '业界动态',
+                'news-category2-desc': '跟踪文化产业动态，洞悉市场趋势，分享行业前沿资讯和发展见解。',
+                'news-category3': '媒体报道',
+                'news-category3-desc': '展示媒体对敦华集团的报道，提升品牌影响力，传递企业正能量。',
+                'news-more': '查看更多',
+                'charity-title': '慈善计划',
+                'charity-desc': '我们致力于支持当地社区，并利用我们的影响力来激发积极的变革。我们相信要真正产生影响，回馈社会。通过各种计划，我们努力为每个人创造一个更加可持续和公平的世界。',
+                'charity-more': '了解更多',
+                'contact-title': '联系我们',
+                'contact-desc': '无论您是寻求合作、咨询业务还是加入我们，都欢迎与我们联系。',
+                'contact-info': '联系方式',
+                'contact-hk': '香港总部',
+                'contact-hk-address': '敦华集团有限公司\n东江泉(香港)食品饮料有限公司\n地址:香港屯门区伟昌工业中心地下I铺\n电话:+852-35905187',
+                'contact-sz': '深圳分部',
+                'contact-sz-address': '深圳星媒娱乐有限公司\n深圳市敦华文化传播有限公司\n地址:深圳市盐田区中青路12号海桐居3栋105\n电话:0755-82952005',
+                'contact-rj': '瑞金分部',
+                'contact-rj-address': '瑞金市朱坊文化旅游有限公司\n瑞金朱坊康养小镇/青花瓷乐团\n地址:江西省瑞金市叶坪镇朱坊村红色康养小镇\n电话:0797-2589888',
+                'contact-follow': '关注我们',
+                'contact-map-title': '位置地图',
+                'contact-map-desc': '敦华集团香港总部：香港屯门区伟昌工业中心地下I铺',
+                'footer-logo': '敦华集团',
+                'footer-desc': '以国际文化交流为契机，专注服务于文化创意产业的投融资机构',
+                'footer-links1': '快速链接',
+                'footer-link-about': '关于我们',
+                'footer-link-industries': '核心产业',
+                'footer-link-subsidiaries': '旗下公司',
+                'footer-link-brands': '品牌商标',
+                'footer-link-news': '新闻动态',
+                'footer-link-contact': '联系我们',
+                'footer-links2': '核心产业',
+                'footer-industry1': '影视出品',
+                'footer-industry2': '演艺制作',
+                'footer-industry3': '康旅研学',
+                'footer-industry4': '文创商贸',
+                'footer-industry5': '演艺经纪',
+                'footer-contact': '联系我们',
+                'footer-address': '香港屯门区伟昌工业中心地下I铺',
+                'footer-phone': '+852-35905187',
+                'footer-email': 'dunhuagroup@gmail.com',
+                'footer-copyright': '© 2016-2025 敦华集团 版权所有',
+                'footer-privacy': '隐私政策',
+                'footer-terms': '使用条款',
+                'footer-sitemap': '网站地图'
+            },
+            'zh-Hant': {
+                'nav-logo': '敦華集團',
+                'nav-about': '關於我們',
+                'nav-industries': '核心產業',
+                'nav-subsidiaries': '旗下公司',
+                'nav-brands': '品牌商標',
+                'nav-news': '新聞動態',
+                'nav-contact': '聯繫我們',
+                'hero-title': '敦華集團',
+                'hero-desc': '文化創意產業先行者 · 國際文化交流橋樑',
+                'hero-btn': '了解更多',
+                'about-title': '關於我們',
+                'about-subtitle': '集團簡介',
+                'about-text1': '敦華集團有限公司位於香港屯門區，是以國際文化交流為契機，專注服務於文化創意產業的投融資機構。旗下控股公司遍布香港、深圳、北京、贛州等地。',
+                'about-text2': '公司以影視出品、演藝製作、康旅研學、文創商貿等四大核心文化產業為發展方向，在各自領域全力拓展，成功投資主辦、承辦了數百場大型演出項目，出品拍攝多部院線電影，投資並運營文旅康養小鎮，創立"東江泉"飲用水品牌，是文創行業發展先行者。',
+                'about-stat1': '100+',
+                'about-stat1-text': '大型演出項目',
+                'about-stat2': '6+',
+                'about-stat2-text': '院線電影出品',
+                'about-stat3': '8+',
+                'about-stat3-text': '控股子公司',
+                'about-stat4': '9+',
+                'about-stat4-text': '品牌商標',
+                'industries-title': '核心產業',
+                'industries-desc': '敦華集團以四大核心文化產業為發展方向，在各自領域全力拓展，打造文化創意產業生態圈。',
+                'industry1-title': '影視出品',
+                'industry1-text': '製作電影、電視劇、紀錄片等影視作品，涵蓋選題、劇本創作、籌資、預算管理、拍攝、後期製作及宣傳推廣等全流程。',
+                'industry2-title': '演藝製作',
+                'industry2-text': '包括音樂劇、舞蹈表演、戲劇演出等多種演藝形式，涉及編排、排練、舞美設計、演員選擇、燈光音效設置及劇碼策劃等環節。',
+                'industry3-title': '康旅研學',
+                'industry3-text': '將康養旅遊和學習相結合的體驗式教育方式，為學生或遊客提供參與戶外活動、文化學習、身心健康提升的機會。',
+                'industry4-title': '文創商貿',
+                'industry4-text': '涵蓋文化藝術、設計、傳媒、數字內容等領域，包括創意產品設計、文化藝術展覽、創意活動策劃及知識產權經營等。',
+                'industry5-title': '演藝經紀',
+                'industry5-text': '敦華的創始業務，多年來與眾多一線明星藝人建立深厚友誼及戰略合作關係，提供專業的藝人經紀服務。我們的服務包括藝人包裝、推廣、商業演出安排、合約管理等全方位支持。',
+                'industry6-title': '實業投資',
+                'industry6-text': '投資運營文旅康養小鎮、飲用水品牌等實業項目，作為行業發展先行者，打造多元化文化產業布局。我們專注於有長期發展潛力的實體項目，追求可持續的投資回報。',
+                'subsidiaries-title': '旗下公司',
+                'subsidiaries-desc': '敦華集團旗下擁有多家專業子公司，業務覆蓋香港、深圳、北京、贛州等地，形成協同發展的產業格局。',
+                'sub1': '敦華文化傳播有限公司',
+                'sub1-desc': '文化項目策劃與執行',
+                'sub2': '深圳市青花瓷樂團',
+                'sub2-desc': '專業音樂演出團體',
+                'sub3': '敦華演藝經紀有限公司',
+                'sub3-desc': '藝人經紀與管理服務',
+                'sub4': '歲金珠寶行',
+                'sub4-desc': '珠寶設計與銷售',
+                'sub5': '瑞金市朱坊康養小鎮',
+                'sub5-desc': '康養旅遊綜合體',
+                'sub6': '瑞金市朱坊文化旅遊有限公司',
+                'sub6-desc': '文化旅遊項目開發',
+                'sub7': '景洪敦華貿易商行',
+                'sub7-desc': '文化產品貿易',
+                'sub8': '寧波星媒時代廣告有限公司',
+                'sub8-desc': '廣告策劃與媒體服務',
+                'sub9': '東江泉(香港)食品飲料有限公司',
+                'sub9-desc': '天然泉水生產與銷售',
+                'brands-title': '品牌商標',
+                'brands-desc': '敦華集團旗下擁有多個知名品牌，覆蓋文化、旅遊、商貿等多個領域。',
+                'brand1': '敦華文化',
+                'brand2': '青花瓷樂團',
+                'brand3': '朱坊文旅',
+                'brand4': '星媒',
+                'brand5': '敦華薈',
+                'brand6': '東江泉',
+                'brand7': '幣友圈',
+                'brand8': '歲金行',
+                'dongjiangquan-title': '東江泉·飲用天然泉水',
+                'dongjiangquan-desc1': '2025年紀念東江水供港60周年之際，敦華集團推出香港品牌——東江泉·飲用天然泉水。',
+                'dongjiangquan-desc2': '該產品源自贛南東江源頭和贛江源頭的自然保護區交匯處，從深層花崗岩裂隙中抽取，含鍶、偏硅酸的天然泉水，甘甜可口、綿柔順滑。',
+                'dongjiangquan-desc3': '已經獲得香港優質"正"印檢測認證，是飲用解渴的佳品之選，是泡茶、煲湯和煮飯的黃金搭檔。',
+                'dongjiangquan-feature1': '源自江西贛南地下280米',
+                'dongjiangquan-feature2': '富含鍶、偏硅酸等礦物質',
+                'dongjiangquan-feature3': '香港優質"正"印檢測認證',
+                'strategy-title': '戰略布局',
+                'strategy1-title': '戰略合作',
+                'strategy1-desc': '與媒體及行業領先企業建立戰略合作，資源共享，協同發展。',
+                'strategy2-title': '大灣區發展',
+                'strategy2-desc': '紮根大灣區，利用區域優勢，拓展文化創意產業市場。',
+                'strategy3-title': '文化創意',
+                'strategy3-desc': '推動文化創意項目，注重文化內涵，打造高品質文化產品。',
+                'strategy4-title': '國際市場',
+                'strategy4-desc': '開拓國際市場，實現全球化布局，促進國際文化交流。',
+                'news-title': '新聞動態',
+                'news-desc': '了解敦華集團最新動態、行業資訊及重要活動信息。',
+                'news-category1': '集團新聞',
+                'news-category1-desc': '發布集團最新消息，分享發展成果，包括新項目啟動、戰略合作等重要信息。',
+                'news-category2': '業界動態',
+                'news-category2-desc': '跟蹤文化產業動態，洞悉市場趨勢，分享行業前沿資訊和發展見解。',
+                'news-category3': '媒體報道',
+                'news-category3-desc': '展示媒體對敦華集團的報道，提升品牌影響力，傳遞企業正能量。',
+                'news-more': '查看更多',
+                'charity-title': '慈善計劃',
+                'charity-desc': '我們致力於支持當地社區，並利用我們的影響力來激發積極的變革。我們相信要真正產生影響，回饋社會。通過各種計劃，我們努力為每個人創造一個更加可持續和公平的世界。',
+                'charity-more': '了解更多',
+                'contact-title': '聯繫我們',
+                'contact-desc': '無論您是尋求合作、諮詢業務還是加入我們，都歡迎與我們聯繫。',
+                'contact-info': '聯繫方式',
+                'contact-hk': '香港總部',
+                'contact-hk-address': '敦華集團有限公司\n東江泉(香港)食品飲料有限公司\n地址:香港屯門區偉昌工業中心地下I鋪\n電話:+852-35905187',
+                'contact-sz': '深圳分部',
+                'contact-sz-address': '深圳星媒娛樂有限公司\n深圳市敦華文化傳播有限公司\n地址:深圳市鹽田區中青路12號海桐居3棟105\n電話:0755-82952005',
+                'contact-rj': '瑞金分部',
+                'contact-rj-address': '瑞金市朱坊文化旅遊有限公司\n瑞金朱坊康養小鎮/青花瓷樂團\n地址:江西省瑞金市葉坪鎮朱坊村紅色康養小鎮\n電話:0797-2589888',
+                'contact-follow': '關注我們',
+                'contact-map-title': '位置地圖',
+                'contact-map-desc': '敦華集團香港總部：香港屯門區偉昌工業中心地下I鋪',
+                'footer-logo': '敦華集團',
+                'footer-desc': '以國際文化交流為契機，專注服務於文化創意產業的投融資機構',
+                'footer-links1': '快速鏈接',
+                'footer-link-about': '關於我們',
+                'footer-link-industries': '核心產業',
+                'footer-link-subsidiaries': '旗下公司',
+                'footer-link-brands': '品牌商標',
+                'footer-link-news': '新聞動態',
+                'footer-link-contact': '聯繫我們',
+                'footer-links2': '核心產業',
+                'footer-industry1': '影視出品',
+                'footer-industry2': '演藝製作',
+                'footer-industry3': '康旅研學',
+                'footer-industry4': '文創商貿',
+                'footer-industry5': '演藝經紀',
+                'footer-contact': '聯繫我們',
+                'footer-address': '香港屯門區偉昌工業中心地下I鋪',
+                'footer-phone': '+852-35905187',
+                'footer-email': 'dunhuagroup@gmail.com',
+                'footer-copyright': '© 2016-2025 敦華集團 版權所有',
+                'footer-privacy': '隱私政策',
+                'footer-terms': '使用條款',
+                'footer-sitemap': '網站地圖'
+            },
+            'en': {
+                'nav-logo': 'Dunhua Group',
+                'nav-about': 'About Us',
+                'nav-industries': 'Core Industries',
+                'nav-subsidiaries': 'Subsidiaries',
+                'nav-brands': 'Brands',
+                'nav-news': 'News',
+                'nav-contact': 'Contact',
+                'hero-title': 'Dunhua Group',
+                'hero-desc': 'Pioneer in Cultural and Creative Industries · Bridge for International Cultural Exchange',
+                'hero-btn': 'Learn More',
+                'about-title': 'About Us',
+                'about-subtitle': 'Group Profile',
+                'about-text1': 'Dunhua Group Limited, located in Tuen Mun District, Hong Kong, is an investment and financing institution focusing on cultural and creative industries through international cultural exchanges. Its subsidiaries are located in Hong Kong, Shenzhen, Beijing, Ganzhou and other places.',
+                'about-text2': 'The company focuses on four core cultural industries: film and television production, performing arts production, health and education tourism, and cultural and creative commerce. It has successfully invested in and hosted hundreds of large-scale performances, produced several films, invested in and operated cultural tourism and health towns, and founded the "Dongjiangquan" drinking water brand, making it a pioneer in the cultural and creative industry.',
+                'about-stat1': '100+',
+                'about-stat1-text': 'Large-scale performances',
+                'about-stat2': '6+',
+                'about-stat2-text': 'Theatrical films produced',
+                'about-stat3': '8+',
+                'about-stat3-text': 'Subsidiaries',
+                'about-stat4': '9+',
+                'about-stat4-text': 'Brand trademarks',
+                'industries-title': 'Core Industries',
+                'industries-desc': 'Dunhua Group focuses on four core cultural industries, expanding in each field to create a cultural and creative industry ecosystem.',
+                'industry1-title': 'Film & TV Production',
+                'industry1-text': 'Producing films, TV dramas, documentaries and other video works, covering the entire process of topic selection, script creation, financing, budget management, shooting, post-production and promotion.',
+                'industry2-title': 'Performing Arts',
+                'industry2-text': 'Including musicals, dance performances, theatrical performances and other forms of performing arts, involving choreography, rehearsal, stage design, actor selection, lighting and sound settings, and repertoire planning.',
+                'industry3-title': 'Health & Education Tourism',
+                'industry3-text': 'An experiential education method that combines health tourism and learning, providing students or tourists with opportunities to participate in outdoor activities, cultural learning, and physical and mental health improvement.',
+                'industry4-title': 'Cultural & Creative Commerce',
+                'industry4-text': 'Covering cultural and artistic, design, media, digital content and other fields, including creative product design, cultural and artistic exhibitions, creative event planning and intellectual property management.',
+                'industry5-title': 'Artist Management',
+                'industry5-text': 'Dunhua\'s founding business has established deep friendships and strategic partnerships with many first-line artists over the years, providing professional artist management services. Our services include comprehensive support for artist packaging, promotion, commercial performance arrangements, contract management, etc.',
+                'industry6-title': 'Industrial Investment',
+                'industry6-text': 'Investing in and operating cultural tourism and health towns, drinking water brands and other industrial projects, as a pioneer in industry development, creating a diversified cultural industry layout. We focus on physical projects with long-term development potential and pursue sustainable investment returns.',
+                'subsidiaries-title': 'Subsidiaries',
+                'subsidiaries-desc': 'Dunhua Group has a number of professional subsidiaries, with businesses covering Hong Kong, Shenzhen, Beijing, Ganzhou and other places, forming a coordinated industrial pattern.',
+                'sub1': 'Dunhua Culture Communication Co., Ltd.',
+                'sub1-desc': 'Cultural project planning and execution',
+                'sub2': 'Shenzhen Blue and White Porcelain Orchestra',
+                'sub2-desc': 'Professional music performance group',
+                'sub3': 'Dunhua Performing Arts Agency Co., Ltd.',
+                'sub3-desc': 'Artist management services',
+                'sub4': 'Sui Jin Jewelry Store',
+                'sub4-desc': 'Jewelry design and sales',
+                'sub5': 'Ruijin Zhufang Health Town',
+                'sub5-desc': 'Health tourism complex',
+                'sub6': 'Ruijin Zhufang Cultural Tourism Co., Ltd.',
+                'sub6-desc': 'Cultural tourism project development',
+                'sub7': 'Jinghong Dunhua Trading Company',
+                'sub7-desc': 'Cultural products trading',
+                'sub8': 'Ningbo Star Media Times Advertising Co., Ltd.',
+                'sub8-desc': 'Advertising planning and media services',
+                'sub9': 'Dongjiangquan (Hong Kong) Food and Beverage Co., Ltd.',
+                'sub9-desc': 'Natural spring water production and sales',
+                'brands-title': 'Brands',
+                'brands-desc': 'Dunhua Group has a number of well-known brands covering culture, tourism, commerce and other fields.',
+                'brand1': 'Dunhua Culture',
+                'brand2': 'Blue and White Porcelain Orchestra',
+                'brand3': 'Zhufang Culture and Tourism',
+                'brand4': 'Star Media',
+                'brand5': 'Dunhua Club',
+                'brand6': 'Dongjiangquan',
+                'brand7': 'Coin Friends Circle',
+                'brand8': 'Sui Jin Bank',
+                'dongjiangquan-title': 'Dongjiangquan · Natural Spring Water',
+                'dongjiangquan-desc1': 'In 2025, to commemorate the 60th anniversary of Dongjiang water supply to Hong Kong, Dunhua Group launched the Hong Kong brand - Dongjiangquan · Natural Spring Water.',
+                'dongjiangquan-desc2': 'The product originates from the intersection of the natural reserves at the source of the Dongjiang River and Ganjiang River in southern Jiangxi. It is extracted from deep granite fractures, containing strontium and metasilicic acid, with a sweet and smooth taste.',
+                'dongjiangquan-desc3': 'It has obtained the Hong Kong Quality "Zheng" Mark certification, making it an excellent choice for drinking and quenching thirst, and a perfect partner for making tea, soup and cooking.',
+                'dongjiangquan-feature1': 'From 280 meters underground in southern Jiangxi',
+                'dongjiangquan-feature2': 'Rich in strontium, metasilicic acid and other minerals',
+                'dongjiangquan-feature3': 'Hong Kong Quality "Zheng" Mark certification',
+                'strategy-title': 'Strategic Layout',
+                'strategy1-title': 'Strategic Cooperation',
+                'strategy1-desc': 'Establish strategic cooperation with media and industry-leading enterprises to share resources and develop together.',
+                'strategy2-title': 'Greater Bay Area Development',
+                'strategy2-desc': 'Rooted in the Greater Bay Area, leveraging regional advantages to expand the cultural and creative industry market.',
+                'strategy3-title': 'Cultural Creativity',
+                'strategy3-desc': 'Promote cultural and creative projects, focus on cultural connotations, and create high-quality cultural products.',
+                'strategy4-title': 'International Market',
+                'strategy4-desc': 'Explore international markets, achieve global layout, and promote international cultural exchanges.',
+                'news-title': 'News',
+                'news-desc': 'Learn about the latest developments, industry information and important events of Dunhua Group.',
+                'news-category1': 'Group News',
+                'news-category1-desc': 'Release the latest news of the group, share development achievements, including important information such as new project launches and strategic cooperation.',
+                'news-category2': 'Industry Trends',
+                'news-category2-desc': 'Track cultural industry dynamics, insight into market trends, and share cutting-edge industry information and development insights.',
+                'news-category3': 'Media Reports',
+                'news-category3-desc': 'Show media reports on Dunhua Group, enhance brand influence, and convey positive corporate energy.',
+                'news-more': 'View more',
+                'charity-title': 'Charity Programs',
+                'charity-desc': 'We are committed to supporting local communities and using our influence to inspire positive change. We believe in giving back to society to make a real impact. Through various programs, we strive to create a more sustainable and equitable world for everyone.',
+                'charity-more': 'Learn more',
+                'contact-title': 'Contact Us',
+                'contact-desc': 'Whether you are seeking cooperation, consulting business or joining us, please feel free to contact us.',
+                'contact-info': 'Contact Information',
+                'contact-hk': 'Hong Kong Headquarters',
+                'contact-hk-address': 'Dunhua Group Limited\nDongjiangquan (Hong Kong) Food and Beverage Co., Ltd.\nAddress: Shop I, G/F, Wai Cheong Industrial Centre, Tuen Mun, Hong Kong\nTel: +852-35905187',
+                'contact-sz': 'Shenzhen Branch',
+                'contact-sz-address': 'Shenzhen Star Media Entertainment Co., Ltd.\nShenzhen Dunhua Culture Communication Co., Ltd.\nAddress: 105, Building 3, Haitongju, No. 12 Zhongqing Road, Yantian District, Shenzhen\nTel: 0755-82952005',
+                'contact-rj': 'Ruijin Branch',
+                'contact-rj-address': 'Ruijin Zhufang Cultural Tourism Co., Ltd.\nRuijin Zhufang Health Town / Blue and White Porcelain Orchestra\nAddress: Red Health Town, Zhufang Village, Yeping Town, Ruijin City, Jiangxi Province\nTel: 0797-2589888',
+                'contact-follow': 'Follow Us',
+                'contact-map-title': 'Location Map',
+                'contact-map-desc': 'Dunhua Group Hong Kong Headquarters: Shop I, G/F, Wai Cheong Industrial Centre, Tuen Mun, Hong Kong',
+                'footer-logo': 'Dunhua Group',
+                'footer-desc': 'An investment and financing institution focusing on cultural and creative industries through international cultural exchanges',
+                'footer-links1': 'Quick Links',
+                'footer-link-about': 'About Us',
+                'footer-link-industries': 'Core Industries',
+                'footer-link-subsidiaries': 'Subsidiaries',
+                'footer-link-brands': 'Brands',
+                'footer-link-news': 'News',
+                'footer-link-contact': 'Contact Us',
+                'footer-links2': 'Core Industries',
+                'footer-industry1': 'Film & TV Production',
+                'footer-industry2': 'Performing Arts',
+                'footer-industry3': 'Health & Education Tourism',
+                'footer-industry4': 'Cultural & Creative Commerce',
+                'footer-industry5': 'Artist Management',
+                'footer-contact': 'Contact Us',
+                'footer-address': 'Shop I, G/F, Wai Cheong Industrial Centre, Tuen Mun, Hong Kong',
+                'footer-phone': '+852-35905187',
+                'footer-email': 'dunhuagroup@gmail.com',
+                'footer-copyright': '© 2016-2025 Dunhua Group. All rights reserved.',
+                'footer-privacy': 'Privacy Policy',
+                'footer-terms': 'Terms of Use',
+                'footer-sitemap': 'Sitemap'
+            }
+        };
+        
+        // 语言切换功能
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    const key = el.getAttribute('data-lang');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.textContent = translations[lang][key];
                     }
                 });
-            }
-            
-            // 滚动显示元素
-            function revealElements() {
-                const reveals = document.querySelectorAll('.reveal');
                 
-                reveals.forEach(reveal => {
-                    const windowHeight = window.innerHeight;
-                    const elementTop = reveal.getBoundingClientRect().top;
-                    const elementVisible = 150;
-                    
-                    if (elementTop < windowHeight - elementVisible) {
-                        reveal.classList.add('active');
-                        
-                        // 当滚动到成就部分时，启动计数动画
-                        if (reveal.classList.contains('counter') && reveal.innerText === '0') {
-                            animateCounters();
-                        }
-                    }
-                });
-            }
-            
-            // 初始检查可见元素
-            revealElements();
+                // 移动端菜单点击后关闭
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
         });
+        
+        // 导航项激活状态
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        function setActiveNavLink() {
+            const scrollY = window.pageYOffset;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', setActiveNavLink);
     </script>
-    
-    
-    
 
-</body></html>
+    </body></html>
