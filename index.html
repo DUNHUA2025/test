@@ -1,4 +1,4 @@
-<html lang="zh-CN"><head>
+<html lang="zh-Hant"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>敦华集团 - 文化创意意产业先行者</title>
@@ -1320,8 +1320,11 @@
         }
         
         window.addEventListener('scroll', setActiveNavLink);
+        
+        // 页面加载完成后默认切换到繁体
+        window.addEventListener('load', function() {
+            // 触发繁体按钮点击事件
+            document.querySelector('.lang-btn[data-lang="zh-Hant"]').click();
+        });
     </script>
-
-
-
 </body></html>
