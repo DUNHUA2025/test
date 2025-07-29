@@ -9,10 +9,11 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0A4DA2', // 科技蓝主色调
-                        secondary: '#35B2E7', // 亮蓝色辅助色
-                        neutral: '#F0F7FF', // 浅蓝灰色中性色
-                        dark: '#052B5C' // 深蓝色
+                        primary: '#165DFF', // 科技感蓝色主色调
+                        secondary: '#00CFFD', // 亮青色辅助色（增强科技感）
+                        accent: '#7B61FF', // 深紫色强调色
+                        dark: '#0F172A', // 深色背景
+                        light: '#F8FAFC' // 浅灰色背景
                     },
                     fontFamily: {
                         sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
@@ -42,6 +43,9 @@
             }
             .responsive-text {
                 font-size: clamp(1rem, 3vw, 1.25rem);
+            }
+            .glow {
+                box-shadow: 0 0 10px rgba(0, 207, 253, 0.5);
             }
         }
     </style>
@@ -84,7 +88,7 @@
             box-shadow: 0 12px 20px rgba(0,0,0,0.15);
         }
         .industry-card:hover .industry-icon {
-            background-color: #35B2E7;
+            background-color: #00CFFD;
             color: white;
         }
         
@@ -104,7 +108,7 @@
         
         /* 焦点样式 */
         a:focus, button:focus {
-            outline: 3px solid #35B2E7;
+            outline: 3px solid #7B61FF;
             outline-offset: 2px;
         }
         
@@ -161,7 +165,7 @@
         }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-white">
+<body class="font-sans text-gray-800 bg-light">
     <!-- 导航栏 -->
     <header id="navbar" class="fixed w-full z-50 bg-transparent">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -217,7 +221,7 @@
     <section class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/cc12d3310c584311957f1c91430eb583~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754068130&amp;x-signature=8ZUC%2F1GKVceXFPG1HoDICHNf3YU%3D" alt="敦华集团文化创意产业" class="w-full h-full object-cover" loading="lazy" width="1920" height="1080">
-            <div class="absolute inset-0 bg-primary/70"></div>
+            <div class="absolute inset-0 bg-primary/80"></div>
         </div>
         
         <div class="container mx-auto px-4 z-10 text-center">
@@ -225,7 +229,7 @@
             <p class="text-[clamp(1.2rem,3vw,1.5rem)] text-white font-serif mb-6 text-shadow reveal" style="transition-delay: 0.2s">DUNHUA GROUP</p>
             <!-- 调整字体大小并增加字距，添加字间分隔点 -->
             <p class="text-[clamp(1.5rem,4vw,2rem)] tracking-widest text-white/90 max-w-3xl mx-auto mb-10 reveal active" style="transition-delay: 0.4s" data-lang="hero-desc">數 . 字 . 文 . 創 . 先 . 行 . 者</p>
-            <a href="#about" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-3 rounded-lg transition-all transform hover:scale-105 reveal" style="transition-delay: 0.6s" data-lang="hero-btn">了解更多</a>
+            <a href="#about" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-8 py-3 rounded-lg transition-all transform hover:scale-105 reveal glow" style="transition-delay: 0.6s" data-lang="hero-btn">了解更多</a>
         </div>
         
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
@@ -234,7 +238,7 @@
     </section>
 
     <!-- 关于我们 -->
-    <section id="about" class="py-20 bg-neutral">
+    <section id="about" class="py-20 bg-light">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="about-title">关于我们</h2>
@@ -326,7 +330,7 @@
             <!-- 独立隔离的产业 -->
             <div class="space-y-12">
                 <!-- 演艺经纪 -->
-                <div class="bg-neutral rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.4s">
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.4s">
                     <div class="grid md:grid-cols-2">
                         <div class="p-8 flex flex-col justify-center">
                             <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
@@ -335,7 +339,7 @@
                             <h3 class="text-2xl font-semibold text-primary mb-4" data-lang="industry5-title">演艺经纪</h3>
                             <p class="text-gray-600 mb-6" data-lang="industry5-text">敦华的创始业务，多年来与众多一线明星艺人建立深厚友谊及战略伙伴关系，提供专业的艺人经纪服务。我们的服务包括艺人包装、推广、商业演出安排、合约管理等全方位支持。</p>
                             <!-- 链接改为发送邮件 -->
-                            <a href="mailto:dunhuagroup@gmail.com" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                            <a href="mailto:dunhuagroup@gmail.com" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors glow">
                                 了解更多 <i class="fa fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -347,7 +351,7 @@
                 </div>
                 
                 <!-- 实业投资 -->
-                <div class="bg-neutral rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.5s">
+                <div class="bg-light rounded-xl shadow-lg overflow-hidden reveal" style="transition-delay: 0.5s">
                     <div class="grid md:grid-cols-2 md:flex-row-reverse">
                         <div class="p-8 flex flex-col justify-center">
                             <div class="industry-icon w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center text-2xl mb-6 transition-all">
@@ -356,7 +360,7 @@
                             <h3 class="text-2xl font-semibold text-primary mb-4" data-lang="industry6-title">实业投资</h3>
                             <p class="text-gray-600 mb-6" data-lang="industry6-text">投资运营文旅朱坊康养小镇、饮用水品牌等实业项目，作为行业发展先行者，打造多元化文化产业布局。我们专注于有长期发展潜力的实体项目，追求可持续的投资回报。</p>
                             <!-- 链接改为发送邮件 -->
-                            <a href="mailto:dunhuagroup@gmail.com" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                            <a href="mailto:dunhuagroup@gmail.com" class="inline-block self-start bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2 rounded-lg transition-colors glow">
                                 了解更多 <i class="fa fa-arrow-right ml-2"></i>
                             </a>
                         </div>
@@ -371,7 +375,7 @@
     </section>
 
     <!-- 旗下公司 -->
-    <section id="subsidiaries" class="py-20 bg-neutral">
+    <section id="subsidiaries" class="py-20 bg-light">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="subsidiaries-title">旗下公司</h2>
@@ -454,48 +458,49 @@
             <!-- 9个logo分成三行，每行3个，已调换LOGO4和LOGO5的位置 -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal active">
                 <!-- 品牌1 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/0e096e556f734485a97bd10f3da486c6~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025479&amp;x-signature=513cp%2F%2F7gaJ29ReFGIWLi9AcTGE%3D" alt="敦华文化品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌2 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c46ae872e119401189334f3a5a0d22e8~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025513&amp;x-signature=osAXfc3YqeHQ19RNOpQQuv4E9bc%3D" alt="青花瓷樂團品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌3 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a87bd3f8dd6d40f9acd149b22169b5f1~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754025539&amp;x-signature=v6CZANxEvbYRob2wWrOnBdTDr%2FA%3D" alt="朱坊文旅品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌5：原为品牌5，现在是品牌4的位置 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c4564566b00a4912bdf62b29183b5e86~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754128184&amp;x-signature=AEw%2FZ8jb090kiaryw0uH1WHftgQ%3D" alt="敦華薈品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌4：原为品牌4，现在是品牌5的位置（突出显示） -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center ring-2 ring-secondary relative overflow-hidden transform hover:scale-110 transition-all duration-300">
-                    <div class="absolute -top-2 -right-2 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-bl-lg whitespace-nowrap">重點品牌</div>
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center ring-2 ring-secondary relative overflow-hidden transform hover:scale-110 transition-all duration-300 glow">
+                    <!-- 优化"重點品牌"显示，增加内边距并调整位置 -->
+                    <div class="absolute top-0 right-0 bg-secondary text-primary text-xs font-bold px-4 py-1 rounded-bl-lg whitespace-nowrap">重點品牌</div>
                     <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/b1764dab6796493cb4f19e9ac3fc88f9~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754036121&amp;x-signature=xlHi%2FWlOroz1%2Bb7LCmcM6OyxMOY%3D" alt="星媒品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌6 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a6cff137b0d04cd3b370cc25e8733bc4~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754134622&amp;x-signature=3m95YY77hbEuteiY7Mzl6l1tmV0%3D" alt="東江泉品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌7 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/17187209bf3940399d02c34bc3b14d68~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754139025&amp;x-signature=xo4zkG4r1P3OTJyf9Lo%2BnNuXwsI%3D" alt="幣友圈品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 品牌8 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/f5799ca9ef3d4b3c876eaa6f07b3df96~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754139054&amp;x-signature=sWHXxXHBdtcm6xQWK1Vx4kB%2BjwQ%3D" alt="歲金行品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
                 
                 <!-- 新增品牌9 -->
-                <div class="brand-item bg-neutral p-6 rounded-lg shadow-sm w-full text-center">
+                <div class="brand-item bg-light p-6 rounded-lg shadow-sm w-full text-center">
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/2b24c1dce57f460bb51d4d6388b770ec~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754132999&amp;x-signature=4eq1k9oaMtMgZWA62CjMkhJE9h4%3D" alt="新增品牌LOGO" class="brand-logo mx-auto" width="280" height="140">
                 </div>
             </div>
@@ -510,7 +515,7 @@
                     <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/199868d434f74c428bbcd22cea9c8fd1~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754132809&amp;x-signature=Yksu2bylVOekVgnLfI5fbts0XYU%3D" alt="东江泉天然泉水" class="w-full h-auto rounded-lg shadow-xl object-cover" loading="lazy" width="600" height="400">
                     <!-- 新增东江泉官网链接 -->
                     <div class="text-center mt-4">
-                        <a href="https://www.tungkongchuen.com/" target="_blank" class="inline-block bg-white text-primary hover:bg-secondary hover:text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                        <a href="https://www.tungkongchuen.com/" target="_blank" class="inline-block bg-secondary text-primary hover:bg-white hover:text-primary font-semibold px-6 py-2 rounded-lg transition-colors glow">
                             東江泉官網 <i class="fa fa-external-link ml-1"></i>
                         </a>
                     </div>
@@ -540,7 +545,7 @@
     </section>
 
     <!-- 战略布局 -->
-    <section class="py-20 bg-neutral">
+    <section class="py-20 bg-light">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="strategy-title">战略布局</h2>
@@ -598,7 +603,7 @@
             
             <div class="grid md:grid-cols-3 gap-6 mb-12">
                 <!-- 新闻分类1 -->
-                <div class="bg-neutral p-6 rounded-lg shadow-md reveal">
+                <div class="bg-light p-6 rounded-lg shadow-md reveal">
                     <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
                         <i class="fa fa-building-o mr-2 text-secondary"></i>
                         <span data-lang="news-category1">集团新闻</span>
@@ -618,7 +623,7 @@
                 </div>
                 
                 <!-- 新闻分类2 -->
-                <div class="bg-neutral p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.2s">
+                <div class="bg-light p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.2s">
                     <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
                         <i class="fa fa-line-chart mr-2 text-secondary"></i>
                         <span data-lang="news-category2">业界动态</span>
@@ -638,7 +643,7 @@
                 </div>
                 
                 <!-- 新闻分类3 -->
-                <div class="bg-neutral p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.4s">
+                <div class="bg-light p-6 rounded-lg shadow-md reveal" style="transition-delay: 0.4s">
                     <h3 class="text-xl font-semibold text-primary mb-4 flex items-center">
                         <i class="fa fa-newspaper-o mr-2 text-secondary"></i>
                         <span data-lang="news-category3">媒体报道</span>
@@ -657,7 +662,7 @@
                     <h3 class="text-2xl font-semibold mb-6" data-lang="charity-title">慈善计划</h3>
                     <p class="responsive-text leading-relaxed mb-6" data-lang="charity-desc">我们致力于支持当地社区，并利用我们的影响力来激发积极的变革。我们相信要真正产生影响，回馈社会。通过各种计划，我们努力为每个人创造一个更加可持续和公平的世界。</p>
                     <!-- 链接改为发送邮件 -->
-                    <a href="mailto:dunhuagroup@gmail.com" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-6 py-2 rounded-lg transition-colors" data-lang="charity-more">了解更多</a>
+                    <a href="mailto:dunhuagroup@gmail.com" class="inline-block bg-secondary hover:bg-secondary/90 text-primary font-semibold px-6 py-2 rounded-lg transition-colors glow" data-lang="charity-more">了解更多</a>
                 </div>
                 <div>
                     <!-- 调小图片像素 -->
@@ -668,7 +673,7 @@
     </section>
 
     <!-- 联系我们 - 优化地图显示和排版 -->
-    <section id="contact" class="py-20 bg-neutral">
+    <section id="contact" class="py-20 bg-light">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-primary mb-4" data-lang="contact-title">联系我们</h2>
@@ -685,7 +690,7 @@
                         
                         <div class="space-y-6 flex-grow">
                             <!-- 香港地址 -->
-                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                            <div class="address-card bg-light p-6 rounded-lg shadow-sm">
                                 <h4 class="font-medium text-gray-800 mb-4 flex items-center">
                                     <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
                                     <span data-lang="contact-hk" class="text-lg">香港总部</span>
@@ -697,7 +702,7 @@
                             </div>
                             
                             <!-- 北京地址 -->
-                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                            <div class="address-card bg-light p-6 rounded-lg shadow-sm">
                                 <h4 class="font-medium text-gray-800 mb-4 flex items-center">
                                     <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
                                     <span class="text-lg" data-lang="contact-beijing">北京</span>
@@ -708,8 +713,8 @@
                             </div>
                             
                             <!-- 深圳地址 - 突出显示深圳星媒娱乐有限公司 -->
-                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm border-2 border-secondary relative">
-                                <div class="absolute -top-2 -right-2 bg-secondary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">重点联系</div>
+                            <div class="address-card bg-light p-6 rounded-lg shadow-sm border-2 border-secondary relative glow">
+                                <div class="absolute -top-2 -right-2 bg-secondary text-primary text-xs font-bold px-3 py-1 rounded-bl-lg whitespace-nowrap">重点联系</div>
                                 <h4 class="font-medium text-gray-800 mb-4 flex items-center">
                                     <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
                                     <span data-lang="contact-sz" class="text-lg">深圳</span>
@@ -721,7 +726,7 @@
                             </div>
                             
                             <!-- 瑞金地址 -->
-                            <div class="address-card bg-neutral p-6 rounded-lg shadow-sm">
+                            <div class="address-card bg-light p-6 rounded-lg shadow-sm">
                                 <h4 class="font-medium text-gray-800 mb-4 flex items-center">
                                     <i class="fa fa-map-marker text-secondary mr-3 text-lg"></i>
                                     <span data-lang="contact-rj" class="text-lg">瑞金</span>
@@ -767,17 +772,17 @@
                     <!-- 修改描述文本 -->
                     <p class="text-gray-300 mb-6" data-lang="footer-desc">文化创意产业的投融资机构</p>
                     <div class="flex space-x-4">
-                        <a href="https://x.com/DunhuaGroup" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Twitter">
+                        <a href="https://x.com/DunhuaGroup" target="_blank" class="text-gray-300 hover:text-secondary transition-colors" aria-label="Twitter">
                             <i class="fa fa-twitter text-xl"></i>
                         </a>
-                        <a href="https://www.instagram.com/tungkongchuen/" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Instagram">
+                        <a href="https://www.instagram.com/tungkongchuen/" target="_blank" class="text-gray-300 hover:text-secondary transition-colors" aria-label="Instagram">
                             <i class="fa fa-instagram text-xl"></i>
                         </a>
-                        <a href="https://www.facebook.com/profile.php?id=61574551334213" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="Facebook">
+                        <a href="https://www.facebook.com/profile.php?id=61574551334213" target="_blank" class="text-gray-300 hover:text-secondary transition-colors" aria-label="Facebook">
                             <i class="fa fa-facebook text-xl"></i>
                         </a>
                         <!-- 更新YouTube链接 -->
-                        <a href="https://www.youtube.com/@DUNHUA2016" target="_blank" class="text-gray-300 hover:text-white transition-colors" aria-label="YouTube">
+                        <a href="https://www.youtube.com/@DUNHUA2016" target="_blank" class="text-gray-300 hover:text-secondary transition-colors" aria-label="YouTube">
                             <i class="fa fa-youtube-play text-xl"></i>
                         </a>
                     </div>
@@ -786,23 +791,23 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-6" data-lang="footer-links1">快速链接</h4>
                     <ul class="space-y-3">
-                        <li><a href="#about" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-about">关于我们</a></li>
-                        <li><a href="#industries" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-industries">核心产业</a></li>
-                        <li><a href="#subsidiaries" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-subsidiaries">旗下公司</a></li>
-                        <li><a href="#brands" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-brands">品牌商标</a></li>
-                        <li><a href="#news" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-news">新闻动态</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-link-contact">联系我们</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-about">关于我们</a></li>
+                        <li><a href="#industries" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-industries">核心产业</a></li>
+                        <li><a href="#subsidiaries" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-subsidiaries">旗下公司</a></li>
+                        <li><a href="#brands" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-brands">品牌商标</a></li>
+                        <li><a href="#news" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-news">新闻动态</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-link-contact">联系我们</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h4 class="text-lg font-semibold mb-6" data-lang="footer-links2">核心产业</h4>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry1">影视出品</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry2">演艺制作</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry3">康旅研学</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry4">文创商贸</a></li>
-                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-lang="footer-industry5">演艺经纪</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-industry1">影视出品</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-industry2">演艺制作</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-industry3">康旅研学</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-industry4">文创商贸</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-secondary transition-colors" data-lang="footer-industry5">演艺经纪</a></li>
                     </ul>
                 </div>
                 
@@ -1246,10 +1251,15 @@
             }
         };
         
-        // 语言切换功能
+        // 语言切换功能 - 修复完整
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const lang = this.getAttribute('data-lang');
+                
+                // 切换HTML语言属性
+                document.documentElement.lang = lang;
+                
+                // 更新所有翻译内容
                 document.querySelectorAll('[data-lang]').forEach(el => {
                     const key = el.getAttribute('data-lang');
                     if (translations[lang] && translations[lang][key]) {
@@ -1265,35 +1275,21 @@
             });
         });
         
-        // 导航项激活状态
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        function setActiveNavLink() {
-            const scrollY = window.pageYOffset;
-            
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 100;
-                const sectionId = section.getAttribute('id');
-                
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === `#${sectionId}`) {
-                            link.classList.add('active');
-                        }
-                    });
+        // 页面加载时初始化语言
+        window.addEventListener('DOMContentLoaded', function() {
+            // 默认为当前HTML语言
+            const defaultLang = document.documentElement.lang || 'zh-Hant';
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[defaultLang] && translations[defaultLang][key]) {
+                    el.textContent = translations[defaultLang][key];
                 }
             });
-        }
-        
-        window.addEventListener('scroll', setActiveNavLink);
-        
-        // 页面加载完成后默认切换到繁体
-        window.addEventListener('load', function() {
-            // 触发繁体按钮点击事件
-            document.querySelector('.lang-btn[data-lang="zh-Hant"]').click();
+            
+            // 触发初始动画
+            checkReveal();
         });
     </script>
+
+
 </body></html>
