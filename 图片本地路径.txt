@@ -1,0 +1,11 @@
+网站根目录/
+├── index.html          # 主网页文件
+└── images/             # 图片文件夹
+    ├── logo.png        # 敦华集团LOGO
+    ├── hero-banner.jpg # 首页横幅图片
+    ├── about-office.jpg # 关于我们页面办公环境图
+    ├── industry-entertainment.jpg # 演艺经纪业务图片
+    ├── industry-investment.jpg # 实业投资业务图片
+    ├── brand1.png to brand9.png # 9个品牌商标图片
+    ├── dongjiangquan-product.jpg # 东江泉产品图片
+    └── charity-program.jpg # 慈善计划图片
