@@ -215,16 +215,17 @@
 
       <!-- 桌面端导航 -->
       <nav class="hidden md:flex space-x-8">
-        <a href="#about" class="nav-link text-white hover:text-secondary transition-colors"
+        <a href="./index.html#about" class="nav-link text-white hover:text-secondary transition-colors"
           data-lang="nav-about">关于我们</a>
-        <a href="#industries" class="nav-link text-white hover:text-secondary transition-colors"
+        <a href="./index.html#industries" class="nav-link text-white hover:text-secondary transition-colors"
           data-lang="nav-industries">核心产业</a>
-        <a href="#subsidiaries" class="nav-link text-white hover:text-secondary transition-colors"
+        <a href="./index.html#subsidiaries" class="nav-link text-white hover:text-secondary transition-colors"
           data-lang="nav-subsidiaries">旗下公司</a>
-        <a href="#brands" class="nav-link text-white hover:text-secondary transition-colors"
+        <a href="./index.html#brands" class="nav-link text-white hover:text-secondary transition-colors"
           data-lang="nav-brands">品牌商標</a>
-        <a href="#news" class="nav-link text-white hover:text-secondary transition-colors" data-lang="nav-news">新闻动态</a>
-        <a href="#contact" class="nav-link text-white hover:text-secondary transition-colors"
+        <a href="./index.html#news" class="nav-link text-white hover:text-secondary transition-colors"
+          data-lang="nav-news">新闻动态</a>
+        <a href="./index.html#contact" class="nav-link text-white hover:text-secondary transition-colors"
           data-lang="nav-contact">联系我们</a>
       </nav>
 
@@ -244,14 +245,18 @@
     <!-- 移动端菜单 -->
     <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full">
       <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
-        <a href="./index.html#about" class="text-primary hover:text-secondary transition-colors" data-lang="nav-about">关于我们</a>
+        <a href="./index.html#about" class="text-primary hover:text-secondary transition-colors"
+          data-lang="nav-about">关于我们</a>
         <a href="./index.html#industries" class="text-primary hover:text-secondary transition-colors"
           data-lang="nav-industries">核心产业</a>
         <a href="./index.html#subsidiaries" class="text-primary hover:text-secondary transition-colors"
           data-lang="nav-subsidiaries">旗下公司</a>
-        <a href="./index.html#brands" class="text-primary hover:text-secondary transition-colors" data-lang="nav-brands">品牌商标</a>
-        <a href="./index.html#news" class="text-primary hover:text-secondary transition-colors" data-lang="nav-news">新闻动态</a>
-        <a href="./index.html#contact" class="text-primary hover:text-secondary transition-colors" data-lang="nav-contact">联系我们</a>
+        <a href="./index.html#brands" class="text-primary hover:text-secondary transition-colors"
+          data-lang="nav-brands">品牌商标</a>
+        <a href="./index.html#news" class="text-primary hover:text-secondary transition-colors"
+          data-lang="nav-news">新闻动态</a>
+        <a href="./index.html#contact" class="text-primary hover:text-secondary transition-colors"
+          data-lang="nav-contact">联系我们</a>
 
         <div class="flex items-center space-x-4 pt-2 border-t border-gray-200">
           <button class="lang-btn text-primary hover:text-secondary transition-colors" data-lang="zh-CN">简</button>
@@ -319,145 +324,145 @@
       const mobileMenu = document.getElementById('mobile-menu');
       mobileMenu.classList.toggle('active');
     });
-    
-        // 多语言数据
-        const translations = {
-            'zh-CN': {
-                'site-title': '敦华集团 - 数字文创先行者',
-                'nav-logo': '敦华集团',
-                'nav-about': '关于我们',
-                'nav-industries': '核心产业',
-                'nav-subsidiaries': '旗下公司',
-                'nav-brands': '品牌商标',
-                'nav-news': '新闻动态',
-                'nav-contact': '联系我们',
-                'hero-title': '敦华集团',
-                'hero-desc': '数 . 字 . 文 . 创 . 先 . 行 . 者',
-                "terms_of_service": "服务条款",
-                "terms_welcome": '欢迎访问 BYB 一家总部位于香港、专注于数字资产与 NFT 投资的平台。通过访问或使用我们的网站 WWW.BYB.COM，您即表示同意遵守以下服务条款（"协议"）并受其约束。在使用本网站前，请您务必仔细阅读本协议内容。',
-                "terms_accept": "1. 接受条款",
-                "terms_accept_desc": "访问或使用本网站，即表示您已阅读、理解并接受本服务条款及我们的隐私政策。如您不同意本条款，请勿使用本网站或相关服务。",
-                "terms_changes": "2. 服务条款的变更",
-                "terms_changes_desc": "我们保留随时更新或修改本服务条款的权利，且无需事先通知。您在任何变更后继续使用本网站，即视为接受更新后的条款。建议您定期查阅本协议以了解最新内容。",
-                "terms_eligibility": "3. 用户资格",
-                "terms_eligibility_desc": "您必须年满 18 岁，且具备签署具有法律约束力协议的能力，方可使用本网站及相关服务。使用本网站即表示您符合上述条件。",
-                "terms_products": "4. 产品与服务信息",
-                "terms_products_desc": "我们致力于确保网站所展示的数字资产、NFT项目及相关信息的准确性与时效性，但不对其完整性、可靠性或无误性作出保证。如因技术或内容错误导致产品信息或价格不准确，我们保留取消相关订单的权利。",
-                "terms_orders": "5. 订单与付款",
-                "terms_orders_desc": "所有订单须经我们确认后方可生效。我们有权基于数量限制、信息错误或欺诈风险等原因拒绝或取消订单。您同意按照网站所列付款方式支付全部费用，包括适用税费与交易手续费。",
-                "terms_returns": "6. 退货与退款",
-                "terms_returns_desc": "请参阅我们的退货政策以了解相关流程与条件。若退货申请不符合政策规定，我们有权拒绝退款请求。",
-                "terms_intellectual": "7. 知识产权",
-                "terms_intellectual_desc": "网站上的所有内容，包括但不限于文本、图像、图形、NFT作品、智能合约代码及软件，均为 BYB 或其授权方所有，受相关知识产权法律保护。未经书面许可，您不得复制、修改、分发或用于商业用途。",
-                "terms_conduct": "8. 用户行为规范",
-                "terms_conduct_desc": "您不得将本网站用于任何非法、欺诈、骚扰或违反本协议的行为。您亦不得干扰网站运行、攻击服务器或违反相关网络协议。",
-                "terms_disclaimer": "9. 免责声明",
-                "terms_disclaimer_desc": '本网站及其提供的所有产品与服务均按"现状"提供，不作任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。数字资产和 NFT 投资具有高度风险，您应自行评估并承担相关后果。',
-                "terms_limitation": "10. 责任限制",
-                "terms_limitation_desc": "在任何情况下，BYB 及其管理人员、员工或代理均不对因使用本网站或购买数字资产而导致的任何间接、偶然、特殊或后果性损害承担责任。",
-                "terms_law": "11. 适用法律",
-                "terms_law_desc": "本服务条款及任何相关协议均受香港特别行政区法律管辖，并据其解释，不考虑法律冲突原则。",
-                "terms_disputes": "12. 争议解决",
-                "terms_disputes_desc": "任何因本服务条款引起或与之相关的争议，应提交香港仲裁协会并依据其规则进行具有约束力的仲裁。仲裁地点为香港，裁决可提交至有管辖权的法院执行。",
-                "terms_termination": "13. 服务终止",
-                "terms_termination_desc": "如您违反本协议或从事可能损害平台、其他用户或第三方的行为，我们有权在不事先通知的情况下暂停或终止您对本网站的访问权限。",
-                "terms_severability": "14. 可分割性",
-                "terms_severability_desc": "若本协议任何条款被认定为无效或不可执行，其余条款仍具完整效力并继续适用。",
-                "terms_contact": "15. 联系方式",
-                "terms_contact_desc": "如您对本服务条款有任何疑问，请通过以下方式联系我们：-@BYB.COM",
 
-            },
-            'zh-Hant': {
-                'site-title': '敦華集團 - 數字文創先行者',
-                'nav-logo': '敦華集團',
-                'nav-about': '關於我們',
-                'nav-industries': '核心產業',
-                'nav-subsidiaries': '旗下公司',
-                'nav-brands': '品牌商標',
-                'nav-news': '新聞動態',
-                'nav-contact': '聯繫我們',
-                'hero-title': '敦華集團',
-                "terms_of_service": "服務條款",
-                "terms_welcome": '歡迎訪問 BYB 一家總部位於香港、專注於數位資產與 NFT 投資的平台。通過訪問或使用我們的網站 WWW.BYB.COM，您即表示同意遵守以下服務條款（"協議"）並受其約束。在使用本網站前，請您務必仔細閱讀本協議內容。',
-                "terms_accept": "1. 接受條款",
-                "terms_accept_desc": "訪問或使用本網站，即表示您已閱讀、理解並接受本服務條款及我們的隱私政策。如您不同意本條款，請勿使用本網站或相關服務。",
-                "terms_changes": "2. 服務條款的變更",
-                "terms_changes_desc": "我們保留隨時更新或修改本服務條款的權利，且無需事先通知。您在任何變更後繼續使用本網站，即視為接受更新後的條款。建議您定期查閱本協議以了解最新內容。",
-                "terms_eligibility": "3. 用戶資格",
-                "terms_eligibility_desc": "您必須年滿 18 歲，且具備簽署具有法律約束力協議的能力，方可使用本網站及相關服務。使用本網站即表示您符合上述條件。",
-                "terms_products": "4. 產品與服務資訊",
-                "terms_products_desc": "我們致力於確保網站所展示的數位資產、NFT項目及相關資訊的準確性與時效性，但不對其完整性、可靠性或無誤性作出保證。如因技術或內容錯誤導致產品資訊或價格不準確，我們保留取消相關訂單的權利。",
-                "terms_orders": "5. 訂單與付款",
-                "terms_orders_desc": "所有訂單須經我們確認後方可生效。我們有權基於數量限制、資訊錯誤或詐欺風險等原因拒絕或取消訂單。您同意按照網站所列付款方式支付全部費用，包括適用稅費與交易手續費。",
-                "terms_returns": "6. 退貨與退款",
-                "terms_returns_desc": "請參閱我們的退貨政策以了解相關流程與條件。若退貨申請不符合政策規定，我們有權拒絕退款請求。",
-                "terms_intellectual": "7. 智慧財產權",
-                "terms_intellectual_desc": "網站上的所有內容，包括但不限於文本、圖像、圖形、NFT作品、智能合約代碼及軟體，均為 BYB 或其授權方所有，受相關智慧財產權法律保護。未經書面許可，您不得複製、修改、分發或用於商業用途。",
-                "terms_conduct": "8. 用戶行為規範",
-                "terms_conduct_desc": "您不得將本網站用於任何非法、詐欺、騷擾或違反本協議的行為。您亦不得干擾網站運行、攻擊伺服器或違反相關網路協議。",
-                "terms_disclaimer": "9. 免責聲明",
-                "terms_disclaimer_desc": '本網站及其提供的所有產品與服務均按"現狀"提供，不作任何明示或暗示的保證，包括但不限於適銷性、特定用途適用性或不侵權的保證。數位資產和 NFT 投資具有高度風險，您應自行評估並承擔相關後果。',
-                "terms_limitation": "10. 責任限制",
-                "terms_limitation_desc": "在任何情況下，BYB 及其管理人員、員工或代理均不對因使用本網站或購買數位資產而導致的任何間接、偶然、特殊或後果性損害承擔責任。",
-                "terms_law": "11. 適用法律",
-                "terms_law_desc": "本服務條款及任何相關協議均受香港特別行政區法律管轄，並據其解釋，不考慮法律衝突原則。",
-                "terms_disputes": "12. 爭議解決",
-                "terms_disputes_desc": "任何因本服務條款引起或與之相關的爭議，應提交香港仲裁協會並依據其規則進行具有約束力的仲裁。仲裁地點為香港，裁決可提交至有管轄權的法院執行。",
-                "terms_termination": "13. 服務終止",
-                "terms_termination_desc": "如您違反本協議或從事可能損害平台、其他用戶或第三方的行為，我們有權在不事先通知的情況下暫停或終止您對本網站的訪問權限。",
-                "terms_severability": "14. 可分割性",
-                "terms_severability_desc": "若本協議任何條款被認定為無效或不可執行，其餘條款仍具完整效力並繼續適用。",
-                "terms_contact": "15. 聯絡方式",
-                "terms_contact_desc": "如您對本服務條款有任何疑問，請通過以下方式聯絡我們：-@BYB.COM",
+    // 多语言数据
+    const translations = {
+      'zh-CN': {
+        'site-title': '敦华集团 - 数字文创先行者',
+        'nav-logo': '敦华集团',
+        'nav-about': '关于我们',
+        'nav-industries': '核心产业',
+        'nav-subsidiaries': '旗下公司',
+        'nav-brands': '品牌商标',
+        'nav-news': '新闻动态',
+        'nav-contact': '联系我们',
+        'hero-title': '敦华集团',
+        'hero-desc': '数 . 字 . 文 . 创 . 先 . 行 . 者',
+        "terms_of_service": "服务条款",
+        "terms_welcome": '欢迎访问 BYB 一家总部位于香港、专注于数字资产与 NFT 投资的平台。通过访问或使用我们的网站 WWW.BYB.COM，您即表示同意遵守以下服务条款（"协议"）并受其约束。在使用本网站前，请您务必仔细阅读本协议内容。',
+        "terms_accept": "1. 接受条款",
+        "terms_accept_desc": "访问或使用本网站，即表示您已阅读、理解并接受本服务条款及我们的隐私政策。如您不同意本条款，请勿使用本网站或相关服务。",
+        "terms_changes": "2. 服务条款的变更",
+        "terms_changes_desc": "我们保留随时更新或修改本服务条款的权利，且无需事先通知。您在任何变更后继续使用本网站，即视为接受更新后的条款。建议您定期查阅本协议以了解最新内容。",
+        "terms_eligibility": "3. 用户资格",
+        "terms_eligibility_desc": "您必须年满 18 岁，且具备签署具有法律约束力协议的能力，方可使用本网站及相关服务。使用本网站即表示您符合上述条件。",
+        "terms_products": "4. 产品与服务信息",
+        "terms_products_desc": "我们致力于确保网站所展示的数字资产、NFT项目及相关信息的准确性与时效性，但不对其完整性、可靠性或无误性作出保证。如因技术或内容错误导致产品信息或价格不准确，我们保留取消相关订单的权利。",
+        "terms_orders": "5. 订单与付款",
+        "terms_orders_desc": "所有订单须经我们确认后方可生效。我们有权基于数量限制、信息错误或欺诈风险等原因拒绝或取消订单。您同意按照网站所列付款方式支付全部费用，包括适用税费与交易手续费。",
+        "terms_returns": "6. 退货与退款",
+        "terms_returns_desc": "请参阅我们的退货政策以了解相关流程与条件。若退货申请不符合政策规定，我们有权拒绝退款请求。",
+        "terms_intellectual": "7. 知识产权",
+        "terms_intellectual_desc": "网站上的所有内容，包括但不限于文本、图像、图形、NFT作品、智能合约代码及软件，均为 BYB 或其授权方所有，受相关知识产权法律保护。未经书面许可，您不得复制、修改、分发或用于商业用途。",
+        "terms_conduct": "8. 用户行为规范",
+        "terms_conduct_desc": "您不得将本网站用于任何非法、欺诈、骚扰或违反本协议的行为。您亦不得干扰网站运行、攻击服务器或违反相关网络协议。",
+        "terms_disclaimer": "9. 免责声明",
+        "terms_disclaimer_desc": '本网站及其提供的所有产品与服务均按"现状"提供，不作任何明示或暗示的保证，包括但不限于适销性、特定用途适用性或不侵权的保证。数字资产和 NFT 投资具有高度风险，您应自行评估并承担相关后果。',
+        "terms_limitation": "10. 责任限制",
+        "terms_limitation_desc": "在任何情况下，BYB 及其管理人员、员工或代理均不对因使用本网站或购买数字资产而导致的任何间接、偶然、特殊或后果性损害承担责任。",
+        "terms_law": "11. 适用法律",
+        "terms_law_desc": "本服务条款及任何相关协议均受香港特别行政区法律管辖，并据其解释，不考虑法律冲突原则。",
+        "terms_disputes": "12. 争议解决",
+        "terms_disputes_desc": "任何因本服务条款引起或与之相关的争议，应提交香港仲裁协会并依据其规则进行具有约束力的仲裁。仲裁地点为香港，裁决可提交至有管辖权的法院执行。",
+        "terms_termination": "13. 服务终止",
+        "terms_termination_desc": "如您违反本协议或从事可能损害平台、其他用户或第三方的行为，我们有权在不事先通知的情况下暂停或终止您对本网站的访问权限。",
+        "terms_severability": "14. 可分割性",
+        "terms_severability_desc": "若本协议任何条款被认定为无效或不可执行，其余条款仍具完整效力并继续适用。",
+        "terms_contact": "15. 联系方式",
+        "terms_contact_desc": "如您对本服务条款有任何疑问，请通过以下方式联系我们：-@BYB.COM",
 
-            },
-            'en': {
-                'site-title': 'Dunhua Group - Pioneer in Cultural and Creative Industries',
-                'nav-logo': 'Dunhua Group',
-                'nav-about': 'About Us',
-                'nav-industries': 'Core Industries',
-                'nav-subsidiaries': 'Subsidiaries',
-                'nav-brands': 'Brands',
-                'nav-news': 'News',
-                'nav-contact': 'Contact',
-                'hero-title': 'Dunhua Group',
-                'hero-desc': 'Digital Cultural and Creative Pioneer',
-                'hero-btn': 'Learn More',
-                "terms_of_service": "Terms of Service",
-                "terms_welcome": "Welcome to BYB, a platform headquartered in Hong Kong and focused on digital assets and NFT investments. By accessing or using our website WWW.BYB.COM, you agree to be bound by the following terms of service (\"Agreement\"). Please read this agreement carefully before using this website.",
-                "terms_accept": "1. Acceptance of Terms",
-                "terms_accept_desc": "By accessing or using this website, you acknowledge that you have read, understood, and accepted these terms of service and our privacy policy. If you do not agree to these terms, please do not use this website or related services.",
-                "terms_changes": "2. Changes to Terms of Service",
-                "terms_changes_desc": "We reserve the right to update or modify these terms of service at any time without prior notice. Your continued use of this website after any changes constitutes acceptance of the updated terms. We recommend that you review this agreement regularly to stay informed of the latest content.",
-                "terms_eligibility": "3. User Eligibility",
-                "terms_eligibility_desc": "You must be at least 18 years old and have the capacity to enter into legally binding agreements to use this website and related services. By using this website, you represent that you meet these requirements.",
-                "terms_products": "4. Product and Service Information",
-                "terms_products_desc": "We are committed to ensuring the accuracy and timeliness of digital assets, NFT projects, and related information displayed on the website, but we make no warranties regarding their completeness, reliability, or accuracy. We reserve the right to cancel related orders if product information or prices are inaccurate due to technical or content errors.",
-                "terms_orders": "5. Orders and Payment",
-                "terms_orders_desc": "All orders must be confirmed by us before they become effective. We have the right to refuse or cancel orders based on quantity limits, information errors, or fraud risks. You agree to pay all fees according to the payment methods listed on the website, including applicable taxes and transaction fees.",
-                "terms_returns": "6. Returns and Refunds",
-                "terms_returns_desc": "Please refer to our return policy to understand the relevant processes and conditions. If a return application does not comply with the policy, we have the right to refuse the refund request.",
-                "terms_intellectual": "7. Intellectual Property",
-                "terms_intellectual_desc": "All content on the website, including but not limited to text, images, graphics, NFT works, smart contract code, and software, is owned by BYB or its authorized parties and is protected by relevant intellectual property laws. You may not copy, modify, distribute, or use for commercial purposes without written permission.",
-                "terms_conduct": "8. User Conduct Standards",
-                "terms_conduct_desc": "You may not use this website for any illegal, fraudulent, harassing, or agreement-violating activities. You may not interfere with website operations, attack servers, or violate relevant network protocols.",
-                "terms_disclaimer": "9. Disclaimer",
-                "terms_disclaimer_desc": "This website and all products and services provided are offered \"as is\" without any express or implied warranties, including but not limited to merchantability, fitness for a particular purpose, or non-infringement. Digital assets and NFT investments carry high risks, and you should evaluate and bear the consequences yourself.",
-                "terms_limitation": "10. Limitation of Liability",
-                "terms_limitation_desc": "In no event shall BYB, its officers, employees, or agents be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or the purchase of digital assets.",
-                "terms_law": "11. Applicable Law",
-                "terms_law_desc": "These terms of service and any related agreements are governed by the laws of the Hong Kong Special Administrative Region and interpreted accordingly, without regard to conflict of law principles.",
-                "terms_disputes": "12. Dispute Resolution",
-                "terms_disputes_desc": "Any disputes arising from or related to these terms of service shall be submitted to the Hong Kong Arbitration Association for binding arbitration in accordance with its rules. The arbitration location is Hong Kong, and the award may be submitted to a court with jurisdiction for enforcement.",
-                "terms_termination": "13. Service Termination",
-                "terms_termination_desc": "If you violate this agreement or engage in behavior that may harm the platform, other users, or third parties, we have the right to suspend or terminate your access to this website without prior notice.",
-                "terms_severability": "14. Severability",
-                "terms_severability_desc": "If any provision of this agreement is deemed invalid or unenforceable, the remaining provisions shall remain in full force and effect and continue to apply.",
-                "terms_contact": "15. Contact Information",
-                "terms_contact_desc": "If you have any questions about these terms of service, please contact us at: -@BYB.COM",
+      },
+      'zh-Hant': {
+        'site-title': '敦華集團 - 數字文創先行者',
+        'nav-logo': '敦華集團',
+        'nav-about': '關於我們',
+        'nav-industries': '核心產業',
+        'nav-subsidiaries': '旗下公司',
+        'nav-brands': '品牌商標',
+        'nav-news': '新聞動態',
+        'nav-contact': '聯繫我們',
+        'hero-title': '敦華集團',
+        "terms_of_service": "服務條款",
+        "terms_welcome": '歡迎訪問 BYB 一家總部位於香港、專注於數位資產與 NFT 投資的平台。通過訪問或使用我們的網站 WWW.BYB.COM，您即表示同意遵守以下服務條款（"協議"）並受其約束。在使用本網站前，請您務必仔細閱讀本協議內容。',
+        "terms_accept": "1. 接受條款",
+        "terms_accept_desc": "訪問或使用本網站，即表示您已閱讀、理解並接受本服務條款及我們的隱私政策。如您不同意本條款，請勿使用本網站或相關服務。",
+        "terms_changes": "2. 服務條款的變更",
+        "terms_changes_desc": "我們保留隨時更新或修改本服務條款的權利，且無需事先通知。您在任何變更後繼續使用本網站，即視為接受更新後的條款。建議您定期查閱本協議以了解最新內容。",
+        "terms_eligibility": "3. 用戶資格",
+        "terms_eligibility_desc": "您必須年滿 18 歲，且具備簽署具有法律約束力協議的能力，方可使用本網站及相關服務。使用本網站即表示您符合上述條件。",
+        "terms_products": "4. 產品與服務資訊",
+        "terms_products_desc": "我們致力於確保網站所展示的數位資產、NFT項目及相關資訊的準確性與時效性，但不對其完整性、可靠性或無誤性作出保證。如因技術或內容錯誤導致產品資訊或價格不準確，我們保留取消相關訂單的權利。",
+        "terms_orders": "5. 訂單與付款",
+        "terms_orders_desc": "所有訂單須經我們確認後方可生效。我們有權基於數量限制、資訊錯誤或詐欺風險等原因拒絕或取消訂單。您同意按照網站所列付款方式支付全部費用，包括適用稅費與交易手續費。",
+        "terms_returns": "6. 退貨與退款",
+        "terms_returns_desc": "請參閱我們的退貨政策以了解相關流程與條件。若退貨申請不符合政策規定，我們有權拒絕退款請求。",
+        "terms_intellectual": "7. 智慧財產權",
+        "terms_intellectual_desc": "網站上的所有內容，包括但不限於文本、圖像、圖形、NFT作品、智能合約代碼及軟體，均為 BYB 或其授權方所有，受相關智慧財產權法律保護。未經書面許可，您不得複製、修改、分發或用於商業用途。",
+        "terms_conduct": "8. 用戶行為規範",
+        "terms_conduct_desc": "您不得將本網站用於任何非法、詐欺、騷擾或違反本協議的行為。您亦不得干擾網站運行、攻擊伺服器或違反相關網路協議。",
+        "terms_disclaimer": "9. 免責聲明",
+        "terms_disclaimer_desc": '本網站及其提供的所有產品與服務均按"現狀"提供，不作任何明示或暗示的保證，包括但不限於適銷性、特定用途適用性或不侵權的保證。數位資產和 NFT 投資具有高度風險，您應自行評估並承擔相關後果。',
+        "terms_limitation": "10. 責任限制",
+        "terms_limitation_desc": "在任何情況下，BYB 及其管理人員、員工或代理均不對因使用本網站或購買數位資產而導致的任何間接、偶然、特殊或後果性損害承擔責任。",
+        "terms_law": "11. 適用法律",
+        "terms_law_desc": "本服務條款及任何相關協議均受香港特別行政區法律管轄，並據其解釋，不考慮法律衝突原則。",
+        "terms_disputes": "12. 爭議解決",
+        "terms_disputes_desc": "任何因本服務條款引起或與之相關的爭議，應提交香港仲裁協會並依據其規則進行具有約束力的仲裁。仲裁地點為香港，裁決可提交至有管轄權的法院執行。",
+        "terms_termination": "13. 服務終止",
+        "terms_termination_desc": "如您違反本協議或從事可能損害平台、其他用戶或第三方的行為，我們有權在不事先通知的情況下暫停或終止您對本網站的訪問權限。",
+        "terms_severability": "14. 可分割性",
+        "terms_severability_desc": "若本協議任何條款被認定為無效或不可執行，其餘條款仍具完整效力並繼續適用。",
+        "terms_contact": "15. 聯絡方式",
+        "terms_contact_desc": "如您對本服務條款有任何疑問，請通過以下方式聯絡我們：-@BYB.COM",
 
-            }
-        };
+      },
+      'en': {
+        'site-title': 'Dunhua Group - Pioneer in Cultural and Creative Industries',
+        'nav-logo': 'Dunhua Group',
+        'nav-about': 'About Us',
+        'nav-industries': 'Core Industries',
+        'nav-subsidiaries': 'Subsidiaries',
+        'nav-brands': 'Brands',
+        'nav-news': 'News',
+        'nav-contact': 'Contact',
+        'hero-title': 'Dunhua Group',
+        'hero-desc': 'Digital Cultural and Creative Pioneer',
+        'hero-btn': 'Learn More',
+        "terms_of_service": "Terms of Service",
+        "terms_welcome": "Welcome to BYB, a platform headquartered in Hong Kong and focused on digital assets and NFT investments. By accessing or using our website WWW.BYB.COM, you agree to be bound by the following terms of service (\"Agreement\"). Please read this agreement carefully before using this website.",
+        "terms_accept": "1. Acceptance of Terms",
+        "terms_accept_desc": "By accessing or using this website, you acknowledge that you have read, understood, and accepted these terms of service and our privacy policy. If you do not agree to these terms, please do not use this website or related services.",
+        "terms_changes": "2. Changes to Terms of Service",
+        "terms_changes_desc": "We reserve the right to update or modify these terms of service at any time without prior notice. Your continued use of this website after any changes constitutes acceptance of the updated terms. We recommend that you review this agreement regularly to stay informed of the latest content.",
+        "terms_eligibility": "3. User Eligibility",
+        "terms_eligibility_desc": "You must be at least 18 years old and have the capacity to enter into legally binding agreements to use this website and related services. By using this website, you represent that you meet these requirements.",
+        "terms_products": "4. Product and Service Information",
+        "terms_products_desc": "We are committed to ensuring the accuracy and timeliness of digital assets, NFT projects, and related information displayed on the website, but we make no warranties regarding their completeness, reliability, or accuracy. We reserve the right to cancel related orders if product information or prices are inaccurate due to technical or content errors.",
+        "terms_orders": "5. Orders and Payment",
+        "terms_orders_desc": "All orders must be confirmed by us before they become effective. We have the right to refuse or cancel orders based on quantity limits, information errors, or fraud risks. You agree to pay all fees according to the payment methods listed on the website, including applicable taxes and transaction fees.",
+        "terms_returns": "6. Returns and Refunds",
+        "terms_returns_desc": "Please refer to our return policy to understand the relevant processes and conditions. If a return application does not comply with the policy, we have the right to refuse the refund request.",
+        "terms_intellectual": "7. Intellectual Property",
+        "terms_intellectual_desc": "All content on the website, including but not limited to text, images, graphics, NFT works, smart contract code, and software, is owned by BYB or its authorized parties and is protected by relevant intellectual property laws. You may not copy, modify, distribute, or use for commercial purposes without written permission.",
+        "terms_conduct": "8. User Conduct Standards",
+        "terms_conduct_desc": "You may not use this website for any illegal, fraudulent, harassing, or agreement-violating activities. You may not interfere with website operations, attack servers, or violate relevant network protocols.",
+        "terms_disclaimer": "9. Disclaimer",
+        "terms_disclaimer_desc": "This website and all products and services provided are offered \"as is\" without any express or implied warranties, including but not limited to merchantability, fitness for a particular purpose, or non-infringement. Digital assets and NFT investments carry high risks, and you should evaluate and bear the consequences yourself.",
+        "terms_limitation": "10. Limitation of Liability",
+        "terms_limitation_desc": "In no event shall BYB, its officers, employees, or agents be liable for any indirect, incidental, special, or consequential damages arising from the use of this website or the purchase of digital assets.",
+        "terms_law": "11. Applicable Law",
+        "terms_law_desc": "These terms of service and any related agreements are governed by the laws of the Hong Kong Special Administrative Region and interpreted accordingly, without regard to conflict of law principles.",
+        "terms_disputes": "12. Dispute Resolution",
+        "terms_disputes_desc": "Any disputes arising from or related to these terms of service shall be submitted to the Hong Kong Arbitration Association for binding arbitration in accordance with its rules. The arbitration location is Hong Kong, and the award may be submitted to a court with jurisdiction for enforcement.",
+        "terms_termination": "13. Service Termination",
+        "terms_termination_desc": "If you violate this agreement or engage in behavior that may harm the platform, other users, or third parties, we have the right to suspend or terminate your access to this website without prior notice.",
+        "terms_severability": "14. Severability",
+        "terms_severability_desc": "If any provision of this agreement is deemed invalid or unenforceable, the remaining provisions shall remain in full force and effect and continue to apply.",
+        "terms_contact": "15. Contact Information",
+        "terms_contact_desc": "If you have any questions about these terms of service, please contact us at: -@BYB.COM",
+
+      }
+    };
 
 
     // 语言切换功能 - 修复完整
