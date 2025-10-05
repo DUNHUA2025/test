@@ -1,0 +1,548 @@
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang="site-title">敦华集团 - 文化创意产业先行者</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF', // 科技感蓝色主色调
+                        secondary: '#00CFFD', // 亮青色辅助色（增强科技感）
+                        accent: '#7B61FF', // 深紫色强调色
+                        dark: '#0F172A', // 深色背景
+                        light: '#F8FAFC' // 浅灰色背景
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif']
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .backdrop-blur {
+                backdrop-filter: blur(8px);
+            }
+            .logo-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+            .subsidiary-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            .responsive-text {
+                font-size: clamp(1rem, 3vw, 1.25rem);
+            }
+            .glow {
+                box-shadow: 0 0 10px rgba(0, 207, 253, 0.5);
+            }
+        }
+    </style>
+    <style>
+        /* 基础动画定义 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 导航栏样式 */
+        #navbar {
+            transition: all 0.3s ease;
+        }
+
+        /* 移动端菜单动画动画 */
+        #mobile-menu {
+            transform: translateY(-20px);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        #mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 产业卡片交互 */
+        .industry-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .industry-card:hover .industry-icon {
+            background-color: #00CFFD;
+            color: white;
+        }
+
+        /* 品牌商标悬停效果 */
+        .brand-item {
+            transition: all 0.3s ease;
+        }
+
+        .brand-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        /* 焦点样式 */
+        a:focus,
+        button:focus {
+            outline: 3px solid #7B61FF;
+            outline-offset: 2px;
+        }
+
+        /* 地址卡片样式 */
+        .address-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .address-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 地图容器样式 - 优化高度和响应式表现 */
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            min-height: 400px;
+            /* 调整为更合适的高度 */
+        }
+
+        /* 品牌商标响应式调整 */
+        .brand-logo {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .privacy {
+            padding-top: 3rem;
+        }
+
+        .privacy p {
+            font-size: 1rem;
+        }
+
+        .radio {
+            font-size: 1.125rem;
+            line-height: 2;
+            text-indent: 0;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .radio::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: calc(0.3rem + 0.5em);
+            width: 0.375rem;
+            height: 0.375rem;
+            border-radius: 50%;
+            background-color: #000;
+        }
+
+        .privacy h1 {
+            font-size: 1.5rem;
+        }
+
+        .my-5 {
+            margin: 0.4rem 0 !important;
+        }
+
+        /* 联系部分响应式调整 */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .map-container {
+                min-height: 300px;
+                /* 移动端地图高度 */
+            }
+
+            /* 品牌商标在移动端的布局和尺寸优化 */
+            .logo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .brand-item {
+                padding: 4px;
+            }
+
+            .brand-logo {
+                max-height: 140px;
+                /* 移动端logo最大高度，已调大 */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            .brand-logo {
+                max-height: 120px;
+                /* 小屏手机logo最大高度，已调大 */
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-gray-800 bg-light">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 bg-primary/90">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white flex items-center">
+                <!-- 替换为本地LOGO -->
+                <img src="images/logo.png" alt="敦华集团LOGO" class="mr-2 bg-transparent" width="40" height="40">
+                <span data-lang="nav-logo">敦华集团</span>
+            </a>
+
+            <!-- 桌面端导航 -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-about">关于我们</a>
+                <a href="#industries" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-industries">核心产业</a>
+                <a href="#subsidiaries" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-subsidiaries">旗下公司</a>
+                <a href="#brands" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-brands">品牌商標</a>
+                <a href="#news" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-news">新闻动态</a>
+                <a href="#contact" class="nav-link text-white hover:text-secondary transition-colors"
+                    data-lang="nav-contact">联系我们</a>
+            </nav>
+
+            <!-- 语言切换 -->
+            <div class="hidden md:flex items-center space-x-4">
+                <button class="lang-btn text-white hover:text-secondary transition-colors" data-lang="zh-CN">简</button>
+                <button class="lang-btn text-white hover:text-secondary transition-colors"
+                    data-lang="zh-Hant">繁</button>
+                <button class="lang-btn text-white hover:text-secondary transition-colors" data-lang="en">En</button>
+            </div>
+
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+                <a href="./index.html#about" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-about">关于我们</a>
+                <a href="./index.html#industries" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-industries">核心产业</a>
+                <a href="./index.html#subsidiaries" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-subsidiaries">旗下公司</a>
+                <a href="./index.html#brands" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-brands">品牌商标</a>
+                <a href="./index.html#news" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-news">新闻动态</a>
+                <a href="./index.html#contact" class="text-primary hover:text-secondary transition-colors"
+                    data-lang="nav-contact">联系我们</a>
+
+                <div class="flex items-center space-x-4 pt-2 border-t border-gray-200">
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors"
+                        data-lang="zh-CN">简</button>
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors"
+                        data-lang="zh-Hant">繁</button>
+                    <button class="lang-btn text-primary hover:text-secondary transition-colors"
+                        data-lang="en">En</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="relative h-screen privacy" style="">
+        <div class="container mx-auto px-4 py-8">
+            <h1 data-lang="privacy_policy_title" style="text-align: center; margin-bottom: 1.2rem;"></h1>
+            <p data-lang="privacy_welcome"> </p>
+            <p data-lang="privacy_accept"> </p>
+            <p data-lang="privacy_updates"> </p>
+            <p data-lang="privacy_collect_title" class="my-5"> </p>
+            <p data-lang="privacy_collect_desc"> </p>
+            <p data-lang="privacy_collect_wallet" class="radio"> </p>
+            <p data-lang="privacy_collect_username" class="radio"> </p>
+            <p data-lang="privacy_collect_email" class="radio"> </p>
+            <p data-lang="privacy_collect_optional" class="radio"> </p>
+            <p data-lang="privacy_collect_name" class="radio"> </p>
+            <p data-lang="privacy_collect_location" class="radio"> </p>
+            <p data-lang="privacy_collect_profile" class="radio"> </p>
+            <p data-lang="privacy_collect_social" class="radio"> </p>
+            <p data-lang="privacy_collect_website" class="radio"> </p>
+            <p data-lang="privacy_collect_consent"> </p>
+            <p data-lang="privacy_provide_title" class="my-5"> </p>
+            <p data-lang="privacy_provide_desc"> </p>
+            <p data-lang="privacy_auto_title" class="my-5"> </p>
+            <p data-lang="privacy_auto_desc"> </p>
+            <p data-lang="privacy_auto_ip" class="radio"> </p>
+            <p data-lang="privacy_auto_browser" class="radio"> </p>
+            <p data-lang="privacy_auto_behavior" class="radio"> </p>
+            <p data-lang="privacy_auto_cookie" class="radio"> </p>
+            <p data-lang="privacy_auto_payment" class="radio"> </p>
+            <p data-lang="privacy_auto_purpose"> </p>
+            <p data-lang="privacy_blockchain_title" class="my-5"> </p>
+            <p data-lang="privacy_blockchain_desc"> </p>
+            <p data-lang="privacy_blockchain_wallet" class="radio"> </p>
+            <p data-lang="privacy_blockchain_nft" class="radio"> </p>
+            <p data-lang="privacy_blockchain_royalty" class="radio"> </p>
+            <p data-lang="privacy_blockchain_warning"> </p>
+            <p data-lang="privacy_methods_title" class="my-5"> </p>
+            <p data-lang="privacy_methods_desc"> </p>
+            <p data-lang="privacy_methods_provide" class="radio"> </p>
+            <p data-lang="privacy_methods_auto" class="radio"> </p>
+            <p data-lang="privacy_methods_blockchain" class="radio"> </p>
+        </div>
+    </section>
+
+    <script>
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled', 'backdrop-blur', 'shadow-lg');
+                // navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('scrolled', 'backdrop-blur', 'shadow-lg');
+                // navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // 多语言数据
+        const translations = {
+            'zh-CN': {
+                'site-title': '敦华集团 - 数字文创先行者',
+                'nav-logo': '敦华集团',
+                'nav-about': '关于我们',
+                'nav-industries': '核心产业',
+                'nav-subsidiaries': '旗下公司',
+                'nav-brands': '品牌商标',
+                'nav-news': '新闻动态',
+                'nav-contact': '联系我们',
+                'hero-title': '敦华集团',
+                "privacy_policy_title": "隐私政策",
+                "privacy_welcome": '欢迎使用 BYB，我们是一家总部位于香港的数字资产与 NFT 投资平台。本隐私政策（"政策"）适用于您访问或使用我们的网站 WWW.BYB.COM、其子域及相关链接（统称"网站"）。本政策说明我们如何收集、使用、共享和保护您的个人信息，并阐明您在数据处理方面的权利与选择。',
+                "privacy_accept": "通过使用本网站，您即表示接受本隐私政策及我们的服务条款。如您不同意本政策，请勿使用本网站或相关服务。",
+                "privacy_updates": "我们可能会不定期更新本政策，所有变更将在本页面发布。如涉及重大变更，我们将提供显著通知。建议您定期查阅本政策以了解最新内容。",
+                "privacy_collect_title": "1. 我们收集的个人信息",
+                "privacy_collect_desc": "在您注册或使用网站服务时，我们可能收集以下信息：",
+                "privacy_collect_wallet": "以太坊钱包地址（通过第三方钱包提供商）",
+                "privacy_collect_username": "用户名",
+                "privacy_collect_email": "电子邮件地址",
+                "privacy_collect_optional": "您也可选择提供其他信息，包括但不限于：",
+                "privacy_collect_name": "全名",
+                "privacy_collect_location": "位置信息",
+                "privacy_collect_profile": "个人简介",
+                "privacy_collect_social": "社交媒体链接",
+                "privacy_collect_website": "个人网站",
+                "privacy_collect_consent": "您自愿提供的资料将视为您明确同意公开该信息。",
+                "privacy_provide_title": "2. 您主动提供的信息",
+                "privacy_provide_desc": "当您填写表单、注册服务或参与平台活动时，我们将收集您提供的相关信息，以便为您提供定制化服务。",
+                "privacy_auto_title": "3. 自动收集的信息",
+                "privacy_auto_desc": "在您使用网站期间，我们可能自动收集以下信息：",
+                "privacy_auto_ip": "IP 地址与设备信息",
+                "privacy_auto_browser": "浏览器类型与用户代理（UA）",
+                "privacy_auto_behavior": "使用行为与访问数据",
+                "privacy_auto_cookie": "Cookie 与其他追踪技术收集的信息",
+                "privacy_auto_payment": "付款与账单信息（如账单地址、支付方式）",
+                "privacy_auto_purpose": "这些信息用于交易处理、服务优化与安全保障。",
+                "privacy_blockchain_title": "4. 区块链上的信息存储",
+                "privacy_blockchain_desc": "通过本网站进行的任何涉及智能合约的交易将永久公开记录在以太坊区块链上。该信息不可更改或删除，包括但不限于：",
+                "privacy_blockchain_wallet": "钱包地址与链上交易记录",
+                "privacy_blockchain_nft": "NFT 元数据与数字艺术内容",
+                "privacy_blockchain_royalty": "版税与支付分成信息",
+                "privacy_blockchain_warning": "您理解并接受这些信息将永久存储在公开可搜索的区块链上，BYB 或任何第三方无法控制或删除。",
+                "privacy_methods_title": "5. 信息收集方式",
+                "privacy_methods_desc": "我们通过以下方式收集您的信息：",
+                "privacy_methods_provide": "您主动提供的信息",
+                "privacy_methods_auto": "自动收集的技术数据",
+                "privacy_methods_blockchain": "区块链上的公开数据",
+            },
+            'zh-Hant': {
+                'site-title': '敦華集團 - 數字文創先行者',
+                'nav-logo': '敦華集團',
+                'nav-about': '關於我們',
+                'nav-industries': '核心產業',
+                'nav-subsidiaries': '旗下公司',
+                'nav-brands': '品牌商標',
+                'nav-news': '新聞動態',
+                'nav-contact': '聯繫我們',
+                'hero-title': '敦華集團',
+                "privacy_policy_title": "隱私政策",
+                "privacy_welcome": `歡迎使用 BYB，我們是一家總部位於香港的數位資產與 NFT 投資平台。本隱私政策（"政策"）適用於您訪問或使用我們的網站 WWW.BYB.COM、其子域及相關連結（統稱"網站"）。本政策說明我們如何收集、使用、共享和保護您的個人資訊，並闡明您在資料處理方面的權利與選擇。`,
+                "privacy_accept": "通過使用本網站，您即表示接受本隱私政策及我們的服務條款。如您不同意本政策，請勿使用本網站或相關服務。",
+                "privacy_updates": "我們可能會不定期更新本政策，所有變更將在本頁面發布。如涉及重大變更，我們將提供顯著通知。建議您定期查閱本政策以了解最新內容。",
+                "privacy_collect_title": "1. 我們收集的個人資訊",
+                "privacy_collect_desc": "在您註冊或使用網站服務時，我們可能收集以下資訊：",
+                "privacy_collect_wallet": "以太坊錢包地址（通過第三方錢包提供商）",
+                "privacy_collect_username": "用戶名",
+                "privacy_collect_email": "電子郵件地址",
+                "privacy_collect_optional": "您也可選擇提供其他資訊，包括但不限於：",
+                "privacy_collect_name": "全名",
+                "privacy_collect_location": "位置資訊",
+                "privacy_collect_profile": "個人簡介",
+                "privacy_collect_social": "社交媒體連結",
+                "privacy_collect_website": "個人網站",
+                "privacy_collect_consent": "您自願提供的資料將視為您明確同意公開該資訊。",
+                "privacy_provide_title": "2. 您主動提供的資訊",
+                "privacy_provide_desc": "當您填寫表單、註冊服務或參與平台活動時，我們將收集您提供的相關資訊，以便為您提供定制化服務。",
+                "privacy_auto_title": "3. 自動收集的資訊",
+                "privacy_auto_desc": "在您使用網站期間，我們可能自動收集以下資訊：",
+                "privacy_auto_ip": "IP 地址與設備資訊",
+                "privacy_auto_browser": "瀏覽器類型與用戶代理（UA）",
+                "privacy_auto_behavior": "使用行為與訪問資料",
+                "privacy_auto_cookie": "Cookie 與其他追蹤技術收集的資訊",
+                "privacy_auto_payment": "付款與帳單資訊（如帳單地址、支付方式）",
+                "privacy_auto_purpose": "這些資訊用於交易處理、服務優化與安全保障。",
+                "privacy_blockchain_title": "4. 區塊鏈上的資訊存儲",
+                "privacy_blockchain_desc": "通過本網站進行的任何涉及智能合約的交易將永久公開記錄在以太坊區塊鏈上。該資訊不可更改或刪除，包括但不限於：",
+                "privacy_blockchain_wallet": "錢包地址與鏈上交易記錄",
+                "privacy_blockchain_nft": "NFT 元資料與數位藝術內容",
+                "privacy_blockchain_royalty": "版稅與支付分成資訊",
+                "privacy_blockchain_warning": "您理解並接受這些資訊將永久存儲在公開可搜索的區塊鏈上，BYB 或任何第三方無法控制或刪除。",
+                "privacy_methods_title": "5. 資訊收集方式",
+                "privacy_methods_desc": "我們通過以下方式收集您的資訊：",
+                "privacy_methods_provide": "您主動提供的資訊",
+                "privacy_methods_auto": "自動收集的技術資料",
+                "privacy_methods_blockchain": "區塊鏈上的公開資料",
+            },
+            'en': {
+                'site-title': 'Dunhua Group - Pioneer in Cultural and Creative Industries',
+                'nav-logo': 'Dunhua Group',
+                'nav-about': 'About Us',
+                'nav-industries': 'Core Industries',
+                'nav-subsidiaries': 'Subsidiaries',
+                'nav-brands': 'Brands',
+                'nav-news': 'News',
+                'nav-contact': 'Contact',
+                'hero-title': 'Dunhua Group',
+                'hero-desc': 'Digital Cultural and Creative Pioneer',
+                'hero-btn': 'Learn More',
+                "privacy_policy_title": "Privacy Policy",
+                "privacy_welcome": "Welcome to BYB, a digital asset and NFT investment platform headquartered in Hong Kong. This privacy policy (\"Policy\") applies to your access or use of our website WWW.BYB.COM, its subdomains, and related links (collectively, the \"Website\"). This policy explains how we collect, use, share, and protect your personal information and clarifies your rights and choices regarding data processing.",
+                "privacy_accept": "By using this website, you agree to this privacy policy and our terms of service. If you do not agree to this policy, please do not use this website or related services.",
+                "privacy_updates": "We may update this policy from time to time, and all changes will be posted on this page. For significant changes, we will provide prominent notice. We recommend that you review this policy regularly to stay informed of the latest content.",
+                "privacy_collect_title": "1. Personal Information We Collect",
+                "privacy_collect_desc": "When you register or use website services, we may collect the following information:",
+                "privacy_collect_wallet": "Ethereum wallet address (through third-party wallet providers)",
+                "privacy_collect_username": "Username",
+                "privacy_collect_email": "Email address",
+                "privacy_collect_optional": "You may also choose to provide other information, including but not limited to:",
+                "privacy_collect_name": "Full name",
+                "privacy_collect_location": "Location information",
+                "privacy_collect_profile": "Personal profile",
+                "privacy_collect_social": "Social media links",
+                "privacy_collect_website": "Personal website",
+                "privacy_collect_consent": "Information you voluntarily provide will be considered as your explicit consent to make that information public.",
+                "privacy_provide_title": "2. Information You Actively Provide",
+                "privacy_provide_desc": "When you fill out forms, register for services, or participate in platform activities, we will collect relevant information you provide to offer you customized services.",
+                "privacy_auto_title": "3. Automatically Collected Information",
+                "privacy_auto_desc": "During your use of the website, we may automatically collect the following information:",
+                "privacy_auto_ip": "IP address and device information",
+                "privacy_auto_browser": "Browser type and user agent (UA)",
+                "privacy_auto_behavior": "Usage behavior and access data",
+                "privacy_auto_cookie": "Information collected through cookies and other tracking technologies",
+                "privacy_auto_payment": "Payment and billing information (such as billing address, payment methods)",
+                "privacy_auto_purpose": "This information is used for transaction processing, service optimization, and security assurance.",
+                "privacy_blockchain_title": "4. Information Storage on Blockchain",
+                "privacy_blockchain_desc": "Any transactions involving smart contracts through this website will be permanently and publicly recorded on the Ethereum blockchain. This information cannot be changed or deleted, including but not limited to:",
+                "privacy_blockchain_wallet": "Wallet addresses and on-chain transaction records",
+                "privacy_blockchain_nft": "NFT metadata and digital art content",
+                "privacy_blockchain_royalty": "Royalty and payment sharing information",
+                "privacy_blockchain_warning": "You understand and accept that this information will be permanently stored on a publicly searchable blockchain, and BYB or any third party cannot control or delete it.",
+                "privacy_methods_title": "5. Information Collection Methods",
+                "privacy_methods_desc": "We collect your information through the following methods:",
+                "privacy_methods_provide": "Information you actively provide",
+                "privacy_methods_auto": "Automatically collected technical data",
+                "privacy_methods_blockchain": "Public data on the blockchain",
+            }
+        };
+
+        // 语言切换功能 - 修复完整
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const lang = this.getAttribute('data-lang');
+
+                // 切换HTML语言属性
+                document.documentElement.lang = lang;
+
+                // 更新所有翻译内容
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    const key = el.getAttribute('data-lang');
+                    if (translations[lang] && translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+
+                // 移动端菜单点击后关闭
+                const mobileMenu = document.getElementById('mobile-menu');
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // 页面加载时初始化语言
+        window.addEventListener('DOMContentLoaded', function () {
+            // 默认为当前HTML语言
+            const defaultLang = document.documentElement.lang || 'zh-Hant';
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[defaultLang] && translations[defaultLang][key]) {
+                    el.textContent = translations[defaultLang][key];
+                }
+            });
+
+            // 触发初始动画
+            checkReveal();
+        });
+    </script>
+
+</body>
+
+</html>
